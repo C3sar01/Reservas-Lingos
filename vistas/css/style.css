@@ -21,7 +21,7 @@ a:visited, a:link, a:focus, a:hover, a:active{
 
 .fc-today{
 
-	background: rgba(255, 255, 255, 0) !important;
+	background:rgba(255,255,255,0) !important;
 }
 
 /*=============================================
@@ -49,7 +49,7 @@ header .bloqueReservas{
 
 
 header .bloqueReservas .campana-y-reserva{
-	background:#FFFBEE;
+	background:#ffffff;
 	cursor:pointer;
 }
 
@@ -60,7 +60,7 @@ header .bloqueReservas .fa-concierge-bell{
 
 header .bloqueReservas .fa-caret-down, header .bloqueReservas .fa-caret-up{
 	font-size:25px; 
-	color:#236AA1;
+	color:#03101a;
 }
 
 header .formReservas{
@@ -77,24 +77,26 @@ header .formReservas .input-group-lg input, header .formReservas select{
 	font-size:14px;
 }
 
-header .formReservas input[type="button"]{
+header .formReservas input[type="submit"]{
 	background:black;
 	font-size:16px;
 }
 
 header .fa-user{
 	font-size:25px; 
-	color:#DFDAD4;
+	color:#0a0600;
 	cursor:pointer;
 }
 
-header .idiomas span{
+header .idiomas span {
 	cursor:pointer;
+	background: #999999!important;
+	border-color: #070700;
 }
 
 header .botonMenu i{
 	font-size:30px; 
-	color:#B5A99B;
+	color:#050300;
 	cursor:pointer;
 }
 

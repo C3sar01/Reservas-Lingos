@@ -111,8 +111,81 @@ HEADER
 			</div>
 
 			<div class="grid-item d-none d-lg-block"></div>
-
 			
+			<!-- CAMPANA Y RESERVA -->
+
+			<div class="grid-item d-none d-lg-block bloqueReservas">
+				
+				<div class="py-2 campana-y-reserva mostrarBloqueReservas" modo="abajo">
+
+					<i class="fas fa-concierge-bell lead mx-2"></i>
+
+					<i class="fas fa-caret-up lead mx-2 flechaReserva"></i>
+
+				</div>	
+
+				<!--=====================================
+				FORMULARIO DE RESERVAS
+				======================================-->
+
+				<div class="formReservas py-1 py-lg-2 px-4">
+					
+					<div class="form-group my-4">
+						<select class="form-control form-control-lg">
+							<option>Tipo de habitación</option>
+							<option>Suite</option>
+							<option>Especial</option>
+							<option>Standar</option>
+						</select>
+					</div>
+
+					<div class="form-group my-4">
+						<select class="form-control form-control-lg">
+							<option>Temática de habitación</option>
+							<option>Oriental</option>
+							<option>Contemporánea</option>
+							<option>Africana</option>
+							<option>Clásica</option>
+							<option>Retro</option>
+						</select>
+					</div>
+
+					<div class="row">
+						
+						 <div class="col-6 input-group input-group-lg pr-1">
+						
+							<input type="text" class="form-control datepicker entrada" placeholder="Entrada">
+
+							<div class="input-group-append">
+								
+								<span class="input-group-text p-2">
+									<i class="far fa-calendar-alt small text-gray-dark"></i>
+								</span>
+							
+							</div>
+
+						</div>
+
+						<div class="col-6 input-group input-group-lg pl-1">
+						
+							<input type="text" class="form-control datepicker salida" placeholder="Salida">
+
+							<div class="input-group-append">
+								
+								<span class="input-group-text p-2">
+									<i class="far fa-calendar-alt small text-gray-dark"></i>
+								</span>
+							
+							</div>
+
+						</div>
+
+					</div>
+
+					<input type="button" class="btn btn-block btn-lg my-4 text-white" value="Ver disponibilidad">
+					
+
+				</div>
 
 			</div>
 
@@ -656,7 +729,7 @@ INFO SALA
 
 										<h3 class="py-2 text-gray-dark mb-0">DESDE $200 USD</h3>
 
-										<h5 class="py-2 text-gray-dark border">Ver detalles <i class="fas fa-chevron-right ml-2" style=""></i></h5>
+										<h5 class="py-2 text-gray-dark border">Ver detalles <i class="fas fa-chevron-right ml-2"></i></h5>
 
 										<h1 class="text-white p-3 mx-auto w-50 lead" style="background:#197DB1">ESPECIAL</h1>
 
