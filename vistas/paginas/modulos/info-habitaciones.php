@@ -214,30 +214,47 @@ INFO SALA
 
 			<div class="col-12 col-lg-4 colDerHabitaciones">
 
-				<h2 class="colorTitulos text-uppercase"><?php echo $salas[0]["tipo"]; ?> INCLUYE:</h2>
-				
+				<h3 class="colorTitulos">TODAS LAS SALAS INCLUYEN</h3>
+			
 				<ul>
-
-				<?php
-
-				   $incluye = json_decode($salas[0]["incluye"], true);
-
-				?>
-
-				<?php foreach ($incluye as $key => $value): ?>
+					
+					<li>
+						<h5>
+							<i class="fas fa-temperature-low w-25 colorTitulos"></i> 
+							<span class="text-dark small">Aire acondicionado</span>
+						</h5>
+					</li>
 
 					<li>
 						<h5>
-							<i class="<?php echo $value["icono"]; ?> w-25 colorTitulos"></i> 
-							<span class="text-dark small"><?php echo $value["item"]; ?></span>
+							<i class="fas fa-video w-25 colorTitulos"></i> 
+							<span class="text-dark small">Proyector</span>
 						</h5>
 					</li>
-					
-				<?php endforeach ?>
-					
 
-					
+					<li>
+						<h5>
+							<i class="fas fa-chalkboard w-25 colorTitulos"></i> 
+							<span class="text-dark small">Pizarra</span>
+						</h5>
+					</li>
+
+					<li>
+						<h5>
+							<i class="fas fa-city w-25 colorTitulos"></i>
+							<span class="text-dark small"> Ambientación de cada ciudad</span>
+						</h5>
+					</li>
+
+					<li>
+						<h5>
+							<i class="fas fa-wifi w-25 colorTitulos"></i> 
+							<span class="text-dark small">Servicio WI-FI</span>
+						</h5>
+					</li>
 				</ul>
+				
+				
 
 				<!-- HABITACIONES -->
 

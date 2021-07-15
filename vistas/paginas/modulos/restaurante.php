@@ -52,7 +52,7 @@ CAFÉ
 				
 				<h1 class="mt-4 my-lg-5">KAFFE</h1>
 
-				<p class="p-4 my-lg-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo beatae nemo, saepe iusto, voluptas fuga. Nesciunt tempora nobis quia, officia at corporis sint sunt saepe quod labore hic iusto totam.</p>
+				<p class="p-4 my-lg-5">DISFRUTA DE UN COFFE BREAK EN EL PRIMER PISO DEL LOCAL EN CAFÉ KAFFE, DONDE TE OFRECEMOS CAFÉ DE GRANO FRESCO Y LOS MEJORES PRODUCTOS PARA ACOMPAÑAR TU EXQUISITO CAFÉ Y TU TARDE DE TRABAJO</p>
 
 				<button class="btn btn-warning text-uppercase mb-5 verCarta">Ver la carta</button>
 
