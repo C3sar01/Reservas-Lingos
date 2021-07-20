@@ -2,7 +2,6 @@
 
 $categorias = ControladorCategorias::ctrMostrarCategorias();
 
-
 ?>
 
 
@@ -42,7 +41,7 @@ HEADER
 
 				</div>
 
-				<!--=====================================
+			<!--=====================================
 			FORMULARIO DE RESERVAS
 			======================================-->
 				<form action="<?php echo $ruta; ?>reservas" method="post">

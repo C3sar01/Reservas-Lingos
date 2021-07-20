@@ -22,7 +22,7 @@ $(".datepicker.entrada").change(function () {
 /*=============================================
 SELECTS DE RESERVA INICIO
 =============================================*/
-$(".selectTipoHabitacion").change(function () {
+$(".selectTipoHabitacion").change(function() {
   let ruta = $(this).val();
 
   if (ruta != "") {
@@ -122,7 +122,7 @@ if ($(".infoReservas").html() != undefined) {
 
         colDerReservas();
       } else {
-        for (var i = 0; i < respuesta.length; i++) {
+        for (let i = 0; i < respuesta.length; i++) {
           /* VALIDAR CRUCE DE FECHAS OPCIÓN 1 */
 
           if (fechaIngreso == respuesta[i]["fecha_ingreso"]) {
@@ -224,9 +224,9 @@ FUNCIÓN COL.DERECHA RESERVAS
 function colDerReservas() {
   $(".colDerReservas").show();
 
-  var codigoReserva = codigoAleatorio(chars, 9);
+  let codigoReserva = codigoAleatorio(chars, 9);
 
-  var datos = new FormData();
+  let datos = new FormData();
   datos.append("codigoReserva", codigoReserva);
 
   $.ajax({

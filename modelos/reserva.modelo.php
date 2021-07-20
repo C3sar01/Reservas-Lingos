@@ -23,4 +23,23 @@ Class ModeloReserva{
 
     }
 
+    /*=============================================
+    Mostrar código reservas
+    =============================================*/
+
+    static public function mdlMostrarCodigoReserva($tabla, $valor){
+
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE codigo_reserva = :codigo_reserva");
+
+        $stmt-> bindParam(":codigo_reserva", $valor, PDO::PARAM_STR);
+
+        $stmt-> execute();
+
+        return $stmt -> fetchAll();
+
+         
+
+    }
+
 }

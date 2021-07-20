@@ -26,8 +26,5 @@ require_once "modelos/reserva.modelo.php";
 
 
 
-
-
-
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

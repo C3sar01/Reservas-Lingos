@@ -4,10 +4,10 @@
 
 
 
-var enlacesSalas = $(".cabeceraHabitacion ul.nav li.nav-item a");
-var tituloBtn = [];
+let enlacesSalas = $(".cabeceraHabitacion ul.nav li.nav-item a");
+let tituloBtn = [];
 
-for(var i = 0; i < enlacesSalas.length; i++){
+for(let i = 0; i < enlacesSalas.length; i++){
 
 	$(enlacesSalas[i]).removeClass("active");
 	$(enlacesSalas[i]).children("i").remove();
@@ -34,11 +34,11 @@ $(".cabeceraHabitacion ul.nav li.nav-item a").click(function(e){
 
 	e.preventDefault();
 
-	var orden = $(this).attr("orden");
-    var ruta = $(this).attr("ruta");
+	let orden = $(this).attr("orden");
+    let ruta = $(this).attr("ruta");
     
 
-	for(var i = 0; i < enlacesSalas.length; i++){
+	for(let i = 0; i < enlacesSalas.length; i++){
 
 	   $(enlacesSalas[i]).removeClass("active");
 	   $(enlacesSalas[i]).children("i").remove();
@@ -53,17 +53,17 @@ $(".cabeceraHabitacion ul.nav li.nav-item a").click(function(e){
     =            AJAX SALAS           =
     =============================================*/
     
-    var listaSlide = $(".slideHabitaciones .slide-inner .slide-area li");
-    var alturaSlide = $(".slideHabitaciones .slide-inner .slide-area").height(); 
+    let listaSlide = $(".slideHabitaciones .slide-inner .slide-area li");
+    let alturaSlide = $(".slideHabitaciones .slide-inner .slide-area").height(); 
 
-    for (var i = 0; i < listaSlide.length; i++) {
+    for (let i = 0; i < listaSlide.length; i++) {
     	
         $(".slideHabitaciones .slide-inner .slide-area").css({"height":alturaSlide+"px"})  
     	$(listaSlide[i]).html("");
     }
 
 
-    var datos = new FormData();
+    let datos = new FormData();
     datos.append("ruta", ruta);
 
 
@@ -81,9 +81,9 @@ $(".cabeceraHabitacion ul.nav li.nav-item a").click(function(e){
     	dataType: "json",
     	success:function(respuesta){
 
-    		var galeria = JSON.parse(respuesta[orden]["galeria"]);
+    		let galeria = JSON.parse(respuesta[orden]["galeria"]);
     		
-    		for(var i = 0; i < galeria.length; i++){
+    		for(let i = 0; i < galeria.length; i++){
 
     			$(listaSlide[0]).html('<img class="img-fluid" src="'+urlServidor+galeria[galeria.length-1]+'">')
 
