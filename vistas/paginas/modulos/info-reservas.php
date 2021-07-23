@@ -7,8 +7,8 @@ if(isset($_POST["id-sala"])) {
 	$reserva = ControladorReserva::ctrMostrarReserva($valor);
 
 	$indice = 0;
-
-	if(!$reserva) {
+	
+	if (!$reserva) {
 
 		$valor = $_POST["ruta"];
 
@@ -22,7 +22,30 @@ if(isset($_POST["id-sala"])) {
 			}
 		}
 	}
-	$planes = ControladorPlanes::ctrMostrarPlanes();
+    /*=============================================
+	SELECCIONAR VALORES
+	=============================================*/
+	date_default_timezone_set("America/Santiago");
+
+	$hora = getdate();
+	$plan16 = $reserva[$indice]["plan16"];
+	$plan32 = $reserva[$indice]["plan32"];
+	$plan64 = $reserva[$indice]["plan64"];
+	$precioHora = [];
+	
+	
+
+	if($hora["hours"] >= 16 && $hora["hours"] <= 20){
+
+		$precioHora = $reserva[$indice]["hora_alta"];
+		
+
+	}else{
+
+		$precioHora = $reserva[$indice]["hora_baja"];
+
+	}
+
 } else {
 	echo '<script> window.location="' .$ruta. '"</script>';
 }
@@ -73,12 +96,12 @@ INFO RESERVAS
 			<!--=====================================
 				CALENDARIO RESERVAS
 			======================================	-->
-
+               
 				<div class="bg-white p-4 calendarioReservas">
-
-				<?php if (!$reserva): ?>
-
-					<h1 class="pb-5 float-left">¡Está Disponible!</h1>
+       
+				<?php if ($valor == $_POST["ruta"]): ?> 
+                    
+					<h1 class="pb-5 float-left">¡La sala se encuentra disponible!</h1>
 
 				<?php else: ?>
 
@@ -117,6 +140,8 @@ INFO RESERVAS
 				<form action="<?php echo $ruta; ?>reservas" method="post">
 
 					<input type="hidden" name="id-sala" value="<?php echo $_POST["id-sala"]; ?>">
+					<input type="hidden" name="ruta" value="<?php echo $_POST["ruta"]; ?>">
+
 
 					
 
@@ -172,55 +197,57 @@ INFO RESERVAS
 
 			<div class="form-group">
 				<label>Ingreso:</label>
-				<input type="date" class="form-control" value="2019-03-13" readonly>
+				<input type="text" class="form-control" value="<?php echo $_POST["fecha-ingreso"]; ?>" readonly>
 			</div>
 
 			<div class="form-group">
 				<label>Salida:</label>
-				<input type="date" class="form-control" value="2019-03-15" readonly>
+				<input type="text" class="form-control" value="<?php echo $_POST["fecha-salida"]; ?>" readonly>
 			</div>
 
 			<div class="form-group">
-				  <label>Habitación:</label>
-			<input type="text" class="form-control" value="Habitación <?php echo $reserva[$indice]["tipo"]." ".$reserva[$indice]["estilo"]; ?>" readonly>
+					<label>Sala:</label>
+					<input type="text" class="form-control" value="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" readonly>
 
-				  <?php
+					<?php
 
-				  	$galeria = json_decode($reserva[$indice]["galeria"], true);
-				  
-				  ?>
+					$galeria = json_decode($reserva[$indice]["galeria"], true);
 
-				  <img src="<?php echo $servidor.$galeria[0]; ?>" class="img-fluid">
+					?>
 
-				   <!-- ESCENARIO 2 Y 3 DE RESERVAS -->
-				   <!-- <input type="text" class="form-control tituloReserva" value="" readonly>   -->
+					<img src="<?php echo $servidor.$galeria[$indice]; ?>" class="img-fluid">
+
+					<!-- ESCENARIO 2 Y 3 DE RESERVAS -->
+					<input type="text" class="form-control tituloReserva" value="" readonly> 
 
 				</div>
-
+			
 			<div class="form-group">
-				<label>Plan:</label>
+
+			 
+			    <label>Valor por horas:</label>
+	            
+				<div class="selectHoras">
 				<select class="form-control">
-
-					<option value="continental">Plan Continental</option>
-					<option value="americano">Plan Americano</option>
-					<option value="romantico">Plan Romántico</option>
-					<option value="lunademiel">Plan Luna de Miel</option>
-					<option value="aventura">Plan Aventura</option>
-					<option value="spa">Plan SPA</option>
-
+                    
+				<option value="" >Este es el valor por horas</option>
+					<option value="<?php ($precioHora) ?>">Valor $<?php echo number_format($precioHora) ?> </option>
+	
+				</select>
+			 </div>
+			 
+				<label>Planes Mensuales:</label>
+				
+				<div class="selectPlanes">
+				<select class="form-control">
+                    
+				    <option value="" >Estos son los planes disponibles</option>
+				    <option value="16h">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
+					<option value="32h">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
+					<option value="64h">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
+	
 				</select>
 			</div>
-
-			<div class="form-group">
-				<label>Personas:</label>
-				<select class="form-control">
-
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-
-				</select>
 			</div>
 
 			<div class="row py-4">

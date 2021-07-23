@@ -159,6 +159,7 @@ INFO SALA
 					<form action="<?php echo $ruta;  ?>reservas" method="post">
 
 						<input type="hidden" name="id-sala" value="<?php echo $salas[0]["id_s"]; ?>">
+						<input type="hidden" name="ruta" value="<?php echo $salas[0]["ruta"]; ?>">
 
 
 						<div class="container">
@@ -287,7 +288,7 @@ INFO SALA
 
 												<p class="small py-4 mb-0"><?php echo $value["descripcion"]; ?></p>
 
-												<h3 class="py-2 text-gray-dark mb-0">DESDE $<?php echo number_format($value["costoxh_early"]); ?> CLP </h3>
+												<h3 class="py-2 text-gray-dark mb-0">DESDE $<?php echo number_format($value["hora_baja"]); ?> CLP </h3>
 
 												<h5 class="py-2 text-gray-dark border">Ver detalles <i class="fas fa-chevron-right ml-2"></i></h5>
 

@@ -41,7 +41,7 @@ HEADER
 
 				</div>
 
-			<!--=====================================
+				<!--=====================================
 			FORMULARIO DE RESERVAS
 			======================================-->
 				<form action="<?php echo $ruta; ?>reservas" method="post">
@@ -247,24 +247,28 @@ MENÚ MÓVIL
 	<div class="formReservas py-1 py-lg-2 px-4">
 
 		<div class="form-group my-4">
-			<select class="form-control form-control-lg">
-				<option>Tipo de sala</option>
-				<option>Suite</option>
-				<option>Especial</option>
-				<option>Standar</option>
+			<select class="form-control form-control-lg selectTipoHabitacion" required>
+
+				<option value="">Tamaño de habitación</option>
+
+				<?php foreach ($categorias as $key => $value) : ?>
+
+					<option value="<?php echo $value["ruta"]; ?>"><?php echo $value["tipo"]; ?></option>
+
+				<?php endforeach ?>
+
 			</select>
 		</div>
 
 		<div class="form-group my-4">
-			<select class="form-control form-control-lg">
-				<option>Temática de sala</option>
-				<option>Oriental</option>
-				<option>Contemporánea</option>
-				<option>Africana</option>
-				<option>Clásica</option>
-				<option>Retro</option>
+			<select class="form-control form-control-lg selectTemaHabitacion" name="id-sala" required>
+
+				<option value="">Temática de habitación</option>
+
 			</select>
 		</div>
+
+		<input type="hidden" id="ruta" name="ruta">
 
 		<div class="row">
 
@@ -298,7 +302,7 @@ MENÚ MÓVIL
 
 		</div>
 
-		<input type="button" class="btn btn-block btn-lg my-4 text-white" value="Ver disponibilidad">
+		<input type="sumbit" class="btn btn-block btn-lg my-4 text-white" value="Ver disponibilidad">
 
 	</div>
 

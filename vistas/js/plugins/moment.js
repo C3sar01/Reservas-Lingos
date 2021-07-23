@@ -439,7 +439,7 @@
 		t[s] = k(e)
 	});
 	var je = "Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado".split("_");
-	var Ze = "Dom_Lun_Mar_Mié_Jue_Vie_Sáb".split("_");
+	var Ze = "Dom_Lun_Mar_Mie_Jue_Vie_Sab".split("_");
 	var ze = "Do_Lu_Ma_Mi_Ju_Vi_Sa".split("_");
 	var $e = ae;
 	var qe = ae;
