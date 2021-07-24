@@ -308,12 +308,26 @@ function colDerReservas() {
 /*=============================================
   SELECTS DE RESERVA X HORA O PLANES
 =============================================*/
-$(".selectHoras").change(function(){
-  $(".selectPlanes").removeAttr("disabled");
+$(".horas").change(function(){
+  $(".planes").attr("disabled", true);
+  $(".horas").attr("readonly", false);
+ 
 });
 
-$(".selectPlanes").change(function(){
-  $(".selectHoras").removeAttr("disabled");
+$(".planes").change(function(){
+  $(".horas").attr("disabled", true);
+  $(".planes").attr("readonly", false);
+
 });
+
+$(".planes").onclick(function(){
+  $(".horas").attr("disabled", false);
+  $(".planes").attr("disabled", false);
+
+});
+
+
+
+
 
 

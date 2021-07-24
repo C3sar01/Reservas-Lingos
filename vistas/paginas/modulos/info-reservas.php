@@ -1,13 +1,13 @@
 <?php
 
-if(isset($_POST["id-sala"])) {
+if (isset($_POST["id-sala"])) {
 
 	$valor = $_POST["id-sala"];
 
 	$reserva = ControladorReserva::ctrMostrarReserva($valor);
 
 	$indice = 0;
-	
+
 	if (!$reserva) {
 
 		$valor = $_POST["ruta"];
@@ -22,7 +22,7 @@ if(isset($_POST["id-sala"])) {
 			}
 		}
 	}
-    /*=============================================
+	/*=============================================
 	SELECCIONAR VALORES
 	=============================================*/
 	date_default_timezone_set("America/Santiago");
@@ -32,22 +32,20 @@ if(isset($_POST["id-sala"])) {
 	$plan32 = $reserva[$indice]["plan32"];
 	$plan64 = $reserva[$indice]["plan64"];
 	$precioHora = [];
-	
-	
 
-	if($hora["hours"] >= 16 && $hora["hours"] <= 20){
+	/*=============================================
+	CONDICIÓN DE VALOR DESPUÉS DE LAS 16:00HRS
+	=============================================*/
+
+	if ($hora["hours"] >= 16 && $hora["hours"] <= 20) {
 
 		$precioHora = $reserva[$indice]["hora_alta"];
-		
-
-	}else{
+	} else {
 
 		$precioHora = $reserva[$indice]["hora_baja"];
-
 	}
-
 } else {
-	echo '<script> window.location="' .$ruta. '"</script>';
+	echo '<script> window.location="' . $ruta . '"</script>';
 }
 
 ?>
@@ -96,40 +94,40 @@ INFO RESERVAS
 			<!--=====================================
 				CALENDARIO RESERVAS
 			======================================	-->
-               
-				<div class="bg-white p-4 calendarioReservas">
-       
-				<?php if ($valor == $_POST["ruta"]): ?> 
-                    
+
+			<div class="bg-white p-4 calendarioReservas">
+
+				<?php if ($valor == $_POST["ruta"]) : ?>
+
 					<h1 class="pb-5 float-left">¡La sala se encuentra disponible!</h1>
 
-				<?php else: ?>
+				<?php else : ?>
 
 					<div class="infoDisponibilidad"></div>
-					
+
 				<?php endif ?>
 
-					<div class="float-right pb-3">
-							
-						<ul>
-							<li>
-								<i class="fas fa-square-full" style="color:#847059"></i> No disponible
-							</li>
+				<div class="float-right pb-3">
 
-							<li>
-								<i class="fas fa-square-full" style="color:#eee"></i> Disponible
-							</li>
+					<ul>
+						<li>
+							<i class="fas fa-square-full" style="color:#847059"></i> No disponible
+						</li>
 
-							<li>
-								<i class="fas fa-square-full" style="color:#FFCC29"></i> Tu reserva
-							</li>
-						</ul>
+						<li>
+							<i class="fas fa-square-full" style="color:#eee"></i> Disponible
+						</li>
 
-					</div>
+						<li>
+							<i class="fas fa-square-full" style="color:#FFCC29"></i> Tu reserva
+						</li>
+					</ul>
 
-					<div class="clearfix"></div>
-			
-					<div id="calendar"></div>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div id="calendar"></div>
 
 				<!--=====================================
 					MODIFICAR FECHAS
@@ -143,7 +141,7 @@ INFO RESERVAS
 					<input type="hidden" name="ruta" value="<?php echo $_POST["ruta"]; ?>">
 
 
-					
+
 
 					<div class="container mb-3">
 
@@ -206,49 +204,53 @@ INFO RESERVAS
 			</div>
 
 			<div class="form-group">
-					<label>Sala:</label>
-					<input type="text" class="form-control" value="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" readonly>
+				<label>Sala:</label>
+				<input type="text" class="form-control" value="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" readonly>
 
-					<?php
+				<?php
 
-					$galeria = json_decode($reserva[$indice]["galeria"], true);
+				$galeria = json_decode($reserva[$indice]["galeria"], true);
 
-					?>
+				?>
 
-					<img src="<?php echo $servidor.$galeria[$indice]; ?>" class="img-fluid">
+				<img src="<?php echo $servidor . $galeria[$indice]; ?>" class="img-fluid">
 
-					<!-- ESCENARIO 2 Y 3 DE RESERVAS -->
-					<input type="text" class="form-control tituloReserva" value="" readonly> 
+				<!-- ESCENARIO 2 Y 3 DE RESERVAS -->
+				<input type="text" class="form-control tituloReserva" value="" readonly>
 
-				</div>
-			
+			</div>
+
 			<div class="form-group">
 
-			 
-			    <label>Valor por horas:</label>
-	            
-				<div class="selectHoras">
-				<select class="form-control">
-                    
-				<option value="" >Este es el valor por horas</option>
+
+				<label>Valor por horas:</label>
+
+
+				<select class="form-control horas" id="selectHoras" readonly>
+
+					<option value="" selected disabled>Este es el valor por horas</option> 
 					<option value="<?php ($precioHora) ?>">Valor $<?php echo number_format($precioHora) ?> </option>
-	
-				</select>
-			 </div>
-			 
+
+				</select> 
+
+                
 				<label>Planes Mensuales:</label>
 				
-				<div class="selectPlanes">
-				<select class="form-control">
-                    
-				    <option value="" >Estos son los planes disponibles</option>
-				    <option value="16h">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
+
+                
+				<select class="form-control planes" id="selectPlanes" readonly> 
+
+					<option value="" selected disabled>Estos son los planes disponibles</option>
+					<option value="16h">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
 					<option value="32h">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
 					<option value="64h">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
-	
-				</select>
+
+				</select>  
+				
+				
+
 			</div>
-			</div>
+			<button class="btn btn-dark btn-sm limpiar>">Limpiar seleccionado <br> <i class="fas fa-redo"></i></button>
 
 			<div class="row py-4">
 
