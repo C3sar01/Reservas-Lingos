@@ -3,7 +3,7 @@
 if (isset($_POST["id-sala"])) {
 
 	$valor = $_POST["id-sala"];
-
+	echo '<pre class=bg-white>';print_r($valor);echo '</pre>';
 	$reserva = ControladorReserva::ctrMostrarReserva($valor);
 
 	$indice = 0;
@@ -44,9 +44,27 @@ if (isset($_POST["id-sala"])) {
 
 		$precioHora = $reserva[$indice]["hora_baja"];
 	}
+
+	/*=============================================
+	DEFNIR CANTIDAD DE HORAS POR RESERVA
+=============================================*/
+	$horaIngreso = new DateTime($_POST["fecha-ingreso"]);
+	$horaSalida = new DateTime($_POST["fecha-salida"]);
+	$diff = $horaIngreso->diff($horaSalida);
+	$horas = $diff->h;
+
+	if($horas == 0){
+		$horas = 1;
+	}
+
+
+
 } else {
 	echo '<script> window.location="' . $ruta . '"</script>';
 }
+
+
+
 
 ?>
 
@@ -54,7 +72,7 @@ if (isset($_POST["id-sala"])) {
 INFO RESERVAS
 ======================================-->
 
-<div class="infoReservas container-fluid bg-white p-0 pb-5" idSala="<?php echo $_POST["id-sala"];  ?>" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" fechaSalida="<?php echo $_POST["fecha-salida"];  ?>">
+<div class="infoReservas container-fluid bg-white p-0 pb-5" idSala="<?php echo $_POST["id-sala"];  ?>" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" fechaSalida="<?php echo $_POST["fecha-salida"];  ?>" horas="<?php echo $horas; ?>">
 
 	<div class="container">
 
@@ -220,50 +238,69 @@ INFO RESERVAS
 
 			</div>
 
-			<div class="form-group">
+			<div class="form-group valores">
 
-
-				<label>Valor por horas:</label>
-
-
-				<select class="form-control horas" id="selectHoras" readonly>
-
-					<option value="" selected disabled>Este es el valor por horas</option> 
-					<option value="<?php ($precioHora) ?>">Valor $<?php echo number_format($precioHora) ?> </option>
-
-				</select> 
-
-                
-				<label>Planes Mensuales:</label>
+			    <br><button type="button" class="btn btn-dark float-right comprarHora">Reservar por hora</button>
+				<br><label>Valor por horas:</label>
 				
 
-                
-				<select class="form-control planes" id="selectPlanes" readonly> 
+
+				<select class="form-control horas" id="selectHoras" disabled >
+
+					<option value="" selected disabled>Este es el valor por horas</option>
+					<option id=v_hora value="<?php ($precioHora)?>,xhoras">Valor $<?php echo number_format($precioHora) ?> </option>
+					
+
+				</select>
+				
+
+                <br><button type="button" class="btn btn-dark float-right comprarPlan">Comprar un plan</button>
+				<br><label>Planes Mensuales:</label>
+
+
+
+				<select class="form-control planes" id="selectPlanes" disabled>
 
 					<option value="" selected disabled>Estos son los planes disponibles</option>
-					<option value="16h">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
-					<option value="32h">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
-					<option value="64h">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
+					<option id="16" value="<?php echo ($plan16)?>,plan16">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
+					<option id="32" value="<?php echo ($plan32)?>,plan32">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
+					<option id="64" value="<?php echo ($plan64)?>,plan64">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
 
-				</select>  
+				</select>
+
 				
-				
+
+
 
 			</div>
-			<button class="btn btn-dark btn-sm limpiar>">Limpiar seleccionado <br> <i class="fas fa-redo"></i></button>
+			<button type="submit" class="btn btn-dark btn-sm limpiar>">Limpiar seleccionado <br> <i class="fas fa-redo"></i></button>
 
 			<div class="row py-4">
 
 				<div class="col-12 col-lg-6 col-xl-7 text-center text-lg-left">
 
-					<h1>$300 USD</h1>
+					<h1 class="precioReserva">$<span><?php echo number_format($precioHora * $horas);?></span>CLP</h1>
 
 				</div>
 
 				<div class="col-12 col-lg-6 col-xl-5">
 
-					<a href="<?php echo $ruta;  ?>perfil">
-						<button class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
+					<a href="<?php echo $ruta;?>perfil" 
+					class="pagarReserva" 
+					idSala="<?php echo $reserva[$indice]["id_s"]; ?>"
+					imgSala="<?php echo $servidor.$galeria[$indice];  ?>"
+					infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>"
+					pagoReserva="<?php echo number_format($precioHora * $horas);?>"
+					codigoReserva=""
+					fechaIngreso="<?php echo $_POST["fecha-ingreso"];?>"
+					fechaSalida="<?php echo $_POST["fecha-salida"];?>"
+					horas="Precio Hora"
+					plan="Precio plan"
+
+
+
+					>
+						<button type="button" class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
 					</a>
 
 				</div>
@@ -271,6 +308,7 @@ INFO RESERVAS
 			</div>
 
 		</div>
+		
 
 	</div>
 

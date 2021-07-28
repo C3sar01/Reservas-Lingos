@@ -5,10 +5,10 @@ $.datetimepicker.setLocale("es");
 
 $(".datepicker.entrada").datetimepicker({
   format: "Y-m-d H:00:00",
-  theme:'dark',
+  theme: "dark",
   mindDate: 0,
   defaultTime: new Date().getHours() + 1 + ":00",
-  todayHighlight:true,
+  todayHighlight: true,
   allowTimes: [
     "12:00",
     "13:00",
@@ -28,10 +28,10 @@ $(".datepicker.entrada").change(function () {
 
   $(".datepicker.salida").datetimepicker({
     format: "Y-m-d H:00:00",
-    theme:'dark',
+    theme: "dark",
     mindDate: 0,
     defaultTime: new Date().getHours() + 1 + ":00",
-    todayHighlight:true,
+    todayHighlight: true,
     allowTimes: [
       "12:00",
       "13:00",
@@ -136,7 +136,6 @@ if ($(".infoReservas").html() != undefined) {
     success: function (respuesta) {
       if (respuesta.length == 0) {
         $("#calendar").fullCalendar({
-          
           defaultDate: fechaIngreso,
           defaultView: "agendaFourDay",
           allDaySlot: false,
@@ -148,10 +147,10 @@ if ($(".infoReservas").html() != undefined) {
           },
           views: {
             agendaFourDay: {
-            type: "agenda",
-            duration: { days: 4 },
+              type: "agenda",
+              duration: { days: 4 },
+            },
           },
-        },
           events: [
             {
               start: fechaIngreso,
@@ -208,12 +207,12 @@ if ($(".infoReservas").html() != undefined) {
           }
 
           if (!validarDisponibilidad) {
-              totalEventos.push({
-              "title": respuesta[i]["estilo"],
-              "start": respuesta[i]["fecha_ingreso"],
-              "end": respuesta[i]["fecha_salida"],
+            totalEventos.push({
+              title: respuesta[i]["estilo"],
+              start: respuesta[i]["fecha_ingreso"],
+              end: respuesta[i]["fecha_salida"],
               //rendering: "background",
-              "color": '#847059',
+              color: "#847059",
             });
 
             $(".infoDisponibilidad").html(
@@ -223,11 +222,11 @@ if ($(".infoReservas").html() != undefined) {
             break;
           } else {
             totalEventos.push({
-              "title": respuesta[i]["estilo"],
-              "start": respuesta[i]["fecha_ingreso"],
-              "end": respuesta[i]["fecha_salida"],
+              title: respuesta[i]["estilo"],
+              start: respuesta[i]["fecha_ingreso"],
+              end: respuesta[i]["fecha_salida"],
               //rendering: "background",
-              "color": '#847059',
+              color: "#847059",
             });
 
             (nombreSala = respuesta[i]["estilo"]),
@@ -243,10 +242,10 @@ if ($(".infoReservas").html() != undefined) {
         if (validarDisponibilidad) {
           totalEventos.push({
             title: nombreSala,
-            "start": fechaIngreso,
-            "end": fechaSalida,
+            start: fechaIngreso,
+            end: fechaSalida,
             //rendering: "background",
-            "color": '#FFCC29',
+            color: "#FFCC29",
           });
         }
 
@@ -263,7 +262,7 @@ if ($(".infoReservas").html() != undefined) {
             right: "next",
           },
           views: {
-              agendaFourDay: {
+            agendaFourDay: {
               type: "agenda",
               duration: { days: 4 },
             },
@@ -298,36 +297,56 @@ function colDerReservas() {
     success: function (respuesta) {
       if (!respuesta) {
         $(".codigoReserva").html(codigoReserva);
+        $(".pagarReserva").attr("pagarReserva",codigoReserva);
+
       } else {
         $(".codigoReserva").html(codigoReserva + codigoAleatorio(chars, 3));
+        $(".pagarReserva").attr("pagarReserva",codigoReserva + codigoAleatorio(chars, 3));
       }
+    },
+  });
 
-    }
-  })
-}
-/*=============================================
+  /*=============================================
   SELECTS DE RESERVA X HORA O PLANES
-=============================================*/
-$(".horas").change(function(){
-  $(".planes").attr("disabled", true);
-  $(".horas").attr("readonly", false);
- 
-});
+  =============================================*/
 
-$(".planes").change(function(){
-  $(".horas").attr("disabled", true);
-  $(".planes").attr("readonly", false);
+  $(".limpiar").click(function () {
+    $(".horas").attr("empty", true);
+  });
+  
+  $(".comprarHora").click(function () {
+    $(".planes").attr("disabled", true);
+    $(".horas").attr("disabled", false);
+  });
 
-});
+  $(".comprarPlan").click(function () {
+    $(".planes").attr("disabled", false);
+    $(".horas").attr("disabled", true);
+  });
 
-$(".planes").onclick(function(){
-  $(".horas").attr("disabled", false);
-  $(".planes").attr("disabled", false);
+  $(".planes").change(function () {
+    $(".precioReserva span").html($(this).val().split(",")[0]);
+    $(".precioReserva span").number(true);
+  });
 
-});
+  
+}
+
+/*=============================================
+  CAPTURAR DATOS DE RESERVA
+  =============================================*/
+  $(".pagarReserva").click(function(){
+
+    let idSala = $(this).attr("idSala");
+    let imgSala =  $(this).attr("imgSala");
+    let infoSala =  $(this).attr("infoSala")+" - "+$(this).attr("horas")+" - "+$("this").attr("plan")+"plan";
+    let pagoReserva = $(this).attr("pagoReserva");
+    let codigoReserva = $(this).attr("codigoReserva");
+    let fechaIngreso = $(this).attr("fechaIngreso");
+    let fechaSalida = $(this).attr("fechaSalida");
+    
 
 
 
 
-
-
+  })

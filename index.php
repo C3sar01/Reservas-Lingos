@@ -24,6 +24,8 @@ require_once "modelos/salas.modelo.php";
 require_once "controladores/reserva.controlador.php";
 require_once "modelos/reserva.modelo.php";
 
+require_once "extensiones/vendor/autoload.php";
+
 
 
 $plantilla = new ControladorPlantilla();

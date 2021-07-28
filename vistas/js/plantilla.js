@@ -1,5 +1,5 @@
-var urlPrincipal = $("#urlPrincipal").val();
-var urlServidor = $("#urlServidor").val();
+let urlPrincipal = $("#urlPrincipal").val();
+let urlServidor = $("#urlServidor").val();
 
 
 /*=============================================
@@ -320,3 +320,22 @@ if(window.matchMedia("(max-width:768px)").matches){
 	$(".infoPerfil .colIzqPerfil").css({"margin-top":($("header").height()+100)+"px"})
 
 }
+/*===============================
+BOTÓN DE MERCADO PAGO
+================================= 
+
+
+// Agrega credenciales de SDK 
+const mp = new MercadoPago('TEST-34516dc2-8177-40e6-94fe-68534521386b', {locale: 'es-CL'});
+
+// Inicializa el Web Tokenize Checkout
+mp.checkout({
+  tokenizer: {
+    totalAmount: 4000,
+    backUrl: 'pago'
+  },
+ render: {
+    container: '.tokenizer-container', // Indica dónde se mostrará el botón
+    label: 'Pagar' // Cambia el texto del botón de pago (opcional)
+ }
+});*/

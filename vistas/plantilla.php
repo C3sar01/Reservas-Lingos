@@ -10,7 +10,7 @@ $servidor = ControladorRuta::ctrServidor();
 <head>
 	<meta charset="UTF-8">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>	
 
 	<title>Lingo's Talca</title>
 
@@ -99,6 +99,12 @@ $servidor = ControladorRuta::ctrServidor();
 	<!-- https://fullcalendar.io/docs/background-events-demo -->	
 	<script src="js/plugins/fullcalendar.min.js"></script>
 
+	<!-- JQUERY NUMBER -->
+	<script src="js/plugins/jquerynumber.js"></script>
+
+	<!-- SDK Client-Side Mercado Pago -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
 
 </head>
 <body>
@@ -176,6 +182,7 @@ include "paginas/modulos/modal.php";
 <script src="js/salas.js"></script>
 <!--<script src="js/reservas.js"></script>-->
 <script src="js/agendas.js"></script>
+<!--<script src="https://sdk.mercadopago.com/js/v2"></script>-->
 
 
 
