@@ -338,15 +338,19 @@ function colDerReservas() {
   $(".pagarReserva").click(function(){
 
     let idSala = $(this).attr("idSala");
+    console.log("idSala", idSala);
     let imgSala =  $(this).attr("imgSala");
+    console.log("imgSala", imgSala);
     let infoSala =  $(this).attr("infoSala")+" - "+$(this).attr("horas")+" - "+$("this").attr("plan")+"plan";
+    console.log("infoSala", infoSala);
     let pagoReserva = $(this).attr("pagoReserva");
+    console.log("pagoReserva", pagoReserva);
     let codigoReserva = $(this).attr("codigoReserva");
+    console.log("codigoReserva", codigoReserva);
     let fechaIngreso = $(this).attr("fechaIngreso");
+    console.log("fechaIngreso", fechaIngreso);
     let fechaSalida = $(this).attr("fechaSalida");
+    console.log("fechaSalida", fechaSalida);
     
-
-
-
 
   })
