@@ -158,44 +158,233 @@ INFO PERFIL
 					<div class="col-12">
 
 
+						<?php if (isset($_COOKIE["codigoReserva"])) : ?>
 
-						<form action="<?php echo $ruta . 'perfil'; ?>" method="POST">
-							<script src="https://www.mercadopago.cl/integrations/v1/web-tokenize-checkout.js" data-public-key="TEST-34516dc2-8177-40e6-94fe-68534521386b" data-transaction-amount="20000.00">
+							<?php
 
-							</script>
-						</form>
-
-						<?php
-						if (isset($_REQUEST["token"])) {
-							$token = $_REQUEST["token"];
-							$payment_method_id = $_REQUEST["payment_method_id"];
-							$installments = $_REQUEST["installments"];
-							$issuer_id = $_REQUEST["issuer_id"];
+							$validarPagoReserva = false;
 
 
-							MercadoPago\SDK::setAccessToken("TEST-4404288869112398-072802-aa167f4fe5c00f1dec03f666c6f74a04-268867485");
-							//...
-							$payment = new MercadoPago\Payment();
-							$payment->transaction_amount = 20000.00;
-							$payment->token = $token;
-							$payment->description = "Sala New York";
-							$payment->installments = $installments;
-							$payment->payment_method_id = $payment_method_id;
-							$payment->issuer_id = $issuer_id;
-							$payment->payer = array(
-								"email" => "john@yourdomain.com"
-							);
-							
-							$payment->save();
-							
-							if ($payment->status == "approved"){
-								
+							$hoy = date("Y-m-d");
+							if ($hoy >= $_COOKIE["fechaIngreso"] || $hoy >= $_COOKIE["fechaSalida"]) {
+
+
+								echo '<div class= "alert alert-danger">Lo sentimos, las fechas de la reserva no pueden ser igual o inferiores al dia de hoy,
+							        vuelve a intentarlo</div>';
+
+								$validarPagoReserva = false;
+							} else {
+
+								$validarPagoReserva = true;
 							}
 
 
+						/*--=====================================
+							Cruce de fechas 
+						======================================*/
+
+						$valor = $_COOKIE["idSala"];
+
+						$validarReserva = ControladorReserva::ctrMostrarReserva($valor);
+
+						$opcion1 = array();
+						$opcion2 = array();
+						$opcion3 = array();
+
+						if ($validarReserva !=0) {
+							
+							foreach ($validarReserva as $key => $value) {
+								
+								
+								 /*=====================================
+							          Validar opción 1 de cruce de fechas
+						         ======================================*/
+								
+								 if($_COOKIE["fechaIngreso"] == $value["fecha_ingreso"]){
+
+									array_push($opcion1, false);
+								
+								}else {
+									
+									array_push($opcion1, true);
+								}
+
+								/*=====================================
+							          Validar opción 2 de cruce de fechas
+						         ======================================*/
+
+								 if($_COOKIE["fechaIngreso"] > $value["fecha_ingreso"] 
+								    && $_COOKIE["fechaIngreso"] < $value["fecha_salida"] ) {
+
+									array_push($opcion2, false);
+								
+								}else {
+									
+									array_push($opcion2, true);
+								}
+
+								/*=====================================
+							          Validar opción 3 de cruce de fechas
+						         ======================================*/
+
+								 if($_COOKIE["fechaIngreso"] < $value["fecha_ingreso"] 
+								    && $_COOKIE["fechaSalida"] > $value["fecha_ingreso"] ) {
+
+									array_push($opcion3, false);
+								
+								}else {
+									
+									array_push($opcion3, true);
+								}
+
+								if ($opcion1[$key] == false || $opcion2[$key] == false || $opcion3[$key] == false) {
+
+									$validarPagoReserva = false;
+
+									echo 'Lo sentimos, las fechas de la reserva que habías seleccionado han sido ocupadas
+									      <a href="'.$ruta.'" class="btn btn-danger btn-sm">
+										  Vuelve a intentarlo</a>';
+
+									break;
+									
+
+								
+								}else {
+									
+									$validarPagoReserva = true;
+								}
+							
+							
+							}
 						}
 
-						?>
+						
+
+
+							?>
+
+							<?php if ($validarPagoReserva) : ?>
+
+
+								<div class="card">
+									<div class="card-header">
+
+										<h4>Tienes una reserva pendiente por pagar:</h4>
+									</div>
+
+									<div class="card-body text-center">
+										<figure>
+											<img src="<?php echo $_COOKIE["imgSala"]; ?>" alt="Sala reservada" class="img-thumbnail w-50">
+										</figure>
+
+										<h5><strong><?php echo $_COOKIE["infoSala"]; ?></strong></h5>
+
+										<h6>Ingreso : <?php echo $_COOKIE["fechaIngreso"]; ?>
+											- Salida <?php echo $_COOKIE["fechaSalida"]; ?></h6>
+
+										<h4>$<?php echo number_format($_COOKIE["pagoReserva"]);  ?></h4>
+
+									</div>
+									<div class="card-footer d-flex">
+										<figure>
+											<img src="img/mercadopago.png" class="img-fluid w-50" alt="Logo Mercado Pago">
+										</figure>
+
+										<form action="<?php echo $ruta . 'perfil'; ?>" method="POST" class="pt-4">
+											<script src="https://www.mercadopago.cl/integrations/v1/web-tokenize-checkout.js" 
+											data-public-key="TEST-34516dc2-8177-40e6-94fe-68534521386b" 
+											data-transaction-amount="<?php echo $_COOKIE["pagoReserva"];  ?>" 
+											data-button-label="Pagar" 
+											data-summary-product-label="<?php echo $_COOKIE["infoSala"]; ?>" 
+											data-summary-product="<?php echo $_COOKIE["pagoReserva"];  ?>">
+
+											</script>
+										</form>
+									</div>
+
+								</div>
+
+
+
+
+								<?php
+								if (isset($_REQUEST["token"])) {
+									$token = $_REQUEST["token"];
+									$payment_method_id = $_REQUEST["payment_method_id"];
+									$installments = $_REQUEST["installments"];
+									$issuer_id = $_REQUEST["issuer_id"];
+
+
+									MercadoPago\SDK::setAccessToken("TEST-4404288869112398-072802-aa167f4fe5c00f1dec03f666c6f74a04-268867485");
+									//...
+									$payment = new MercadoPago\Payment();
+									$payment->transaction_amount = $_COOKIE["pagoReserva"];
+									$payment->token = $token;
+									$payment->description = $_COOKIE["infoSala"];
+									$payment->installments = $installments;
+									$payment->payment_method_id = $payment_method_id;
+									$payment->issuer_id = $issuer_id;
+									$payment->payer = array(
+										"email" => "john@yourdomain.com"
+									);
+
+									$payment->save();
+
+
+									if ($payment->status == "approved") {
+
+										$datos = array(
+
+											"id_salas" => $_COOKIE["idSala"],
+											"id_usuario" => 1,
+											"pago_reserva" => $_COOKIE["pagoReserva"],
+											"numero_transaccion" => $payment->id,
+											"codigo_reserva" => $_COOKIE["codigoReserva"],
+											"descripcion_reserva" => $_COOKIE["infoSala"],
+											"fecha_ingreso" => $_COOKIE["fechaIngreso"],
+											"fecha_salida" => $_COOKIE["fechaSalida"]
+										);
+
+										$respuesta = ControladorReserva::ctrGuardarReserva($datos);
+
+										if ($respuesta == "ok") {
+
+
+											echo '<script>
+
+									document.cookie = "idSala=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+									document.cookie = "imgSala=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+									document.cookie = "infoSala=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+									document.cookie = "pagoReserva=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+									document.cookie = "codigoReserva=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+									document.cookie = "fechaIngreso=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+									document.cookie = "fechaSalida=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' . $ruta . ';";
+
+									swal({
+										type:"success",
+										title: "¡CORRECTO!",
+										text: "¡La reserva ha sido creada con éxito!",
+										showConfirmButton: true,
+										confirmButtonText: "Cerrar"
+									  
+									}).then(function(result){
+
+											if(result.value){   
+												history.back();
+											  } 
+									});
+
+									  </script>';
+										}
+									} else {
+										echo '<h1>Algo salió mal!</h1>
+									  <p>Ha ocurrido un error con el pago. Por favor vuelve a intentarlo.</p>';
+									}
+								}
+
+								?>
+							<?php endif ?>
+						<?php endif ?>
 
 					</div>
 

@@ -58,13 +58,7 @@ $servidor = ControladorRuta::ctrServidor();
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="/path/to/cdn/jquery.min.js"></script>
-    <script src="js/plugins/datepair.min.js"></script>
-    <script src="js/plugins/jquery.datepair.min.js"></script>
-    <link rel="stylesheet" href="css/plugins/jquery.timepicker.css" />
-    <script src="js/plugins/jquery.timepicker.js"></script>
-    <link rel="stylesheet" href="css/plugins/bootstrap-datepicker.css">
-    <script src="js/plugins/bootstrap-datepicker.js"></script>
+	
 
 	<!-- Popper JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -105,6 +99,10 @@ $servidor = ControladorRuta::ctrServidor();
 	<!-- SDK Client-Side Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
+	<!-- SWEET ALERT 2 -->	
+	<!-- https://sweetalert2.github.io/ -->
+	<script src="js/plugins/sweetalert2.all.js"></script>
+
 
 </head>
 <body>
@@ -112,6 +110,7 @@ $servidor = ControladorRuta::ctrServidor();
 <?php
 
 include "paginas/modulos/header.php";
+include "paginas/modulos/modal.php";
 
 /*=============================================
 PÁGINAS
@@ -168,7 +167,7 @@ PÁGINAS
 
 include "paginas/modulos/footer.php";
 
-include "paginas/modulos/modal.php";
+
 
 ?>
 
@@ -182,6 +181,7 @@ include "paginas/modulos/modal.php";
 <script src="js/salas.js"></script>
 <!--<script src="js/reservas.js"></script>-->
 <script src="js/agendas.js"></script>
+<script src="js/usuarios.js"></script>
 <!--<script src="https://sdk.mercadopago.com/js/v2"></script>-->
 
 

@@ -45,7 +45,7 @@ if (isset($_POST["id-sala"])) {
 		$precioHora = $reserva[$indice]["hora_baja"];
 	}
 
-	/*=============================================
+/*=============================================
 	DEFNIR CANTIDAD DE HORAS POR RESERVA
 =============================================*/
 	$horaIngreso = new DateTime($_POST["fecha-ingreso"]);
@@ -224,14 +224,14 @@ INFO RESERVAS
 			<div class="form-group">
 				<label>Sala:</label>
 				<input type="text" class="form-control" value="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" readonly>
-
+                 <br>
 				<?php
 
 				$galeria = json_decode($reserva[$indice]["galeria"], true);
 
 				?>
 
-				<img src="<?php echo $servidor . $galeria[$indice]; ?>" class="img-fluid">
+				<img src="<?php echo $servidor.$galeria[0]; ?>" class="img-fluid">
 
 				<!-- ESCENARIO 2 Y 3 DE RESERVAS -->
 				<input type="text" class="form-control tituloReserva" value="" readonly>
@@ -240,20 +240,7 @@ INFO RESERVAS
 
 			<div class="form-group valores">
 
-			    <br><button type="button" class="btn btn-dark float-right comprarHora">Reservar por hora</button>
-				<br><label>Valor por horas:</label>
-				
-
-
-				<select class="form-control horas" id="selectHoras" disabled >
-
-					<option value="" selected disabled>Este es el valor por horas</option>
-					<option id=v_hora value="<?php ($precioHora)?>,xhoras">Valor $<?php echo number_format($precioHora) ?> </option>
-					
-
-				</select>
-				
-
+			    <label><h3 class="">Si no te basta con reservar por horas, también revisa los planes disponibles!</h3></label>
                 <br><button type="button" class="btn btn-dark float-right comprarPlan">Comprar un plan</button>
 				<br><label>Planes Mensuales:</label>
 
@@ -273,13 +260,13 @@ INFO RESERVAS
 
 
 			</div>
-			<button type="submit" class="btn btn-dark btn-sm limpiar>">Limpiar seleccionado <br> <i class="fas fa-redo"></i></button>
+			
 
 			<div class="row py-4">
 
 				<div class="col-12 col-lg-6 col-xl-7 text-center text-lg-left">
 
-					<h1 class="precioReserva">$<span><?php echo number_format($precioHora * $horas);?></span>CLP</h1>
+					<h1 class="precioReserva">$<span><?php echo number_format($precioHora * $horas);?></span><br>CLP</h1>
 
 				</div>
 
@@ -288,9 +275,10 @@ INFO RESERVAS
 					<a href="<?php echo $ruta;?>perfil" 
 					class="pagarReserva" 
 					idSala="<?php echo $reserva[$indice]["id_s"]; ?>"
-					imgSala="<?php echo $servidor.$galeria[$indice];  ?>"
+					imgSala="<?php echo $servidor.$galeria[0];  ?>"
 					infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>"
-					pagoReserva="<?php echo number_format($precioHora * $horas);?>"
+					pagoReserva="<?php echo ($precioHora * $horas);?>"
+					pagoPlan="<?php echo number_format($precioHora * $horas);?>"
 					codigoReserva=""
 					fechaIngreso="<?php echo $_POST["fecha-ingreso"];?>"
 					fechaSalida="<?php echo $_POST["fecha-salida"];?>"

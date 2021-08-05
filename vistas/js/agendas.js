@@ -333,24 +333,53 @@ function colDerReservas() {
 }
 
 /*=============================================
+  GENERAR COOKIES
+=============================================*/
+
+function crearCookie(nombre, valor, diasExpedicion){
+
+  let hoy = new Date();
+
+  hoy.setTime(hoy.getTime() +(diasExpedicion * 24 * 60 * 1000));
+
+  let fechaExpedicion = "expires=" + hoy.toUTCString();
+
+
+  document.cookie = nombre + "=" + valor + "; " + fechaExpedicion;
+
+}
+
+
+
+/*=============================================
   CAPTURAR DATOS DE RESERVA
-  =============================================*/
+=============================================*/
   $(".pagarReserva").click(function(){
 
     let idSala = $(this).attr("idSala");
-    console.log("idSala", idSala);
+    
     let imgSala =  $(this).attr("imgSala");
-    console.log("imgSala", imgSala);
-    let infoSala =  $(this).attr("infoSala")+" - "+$(this).attr("horas")+" - "+$("this").attr("plan")+"plan";
-    console.log("infoSala", infoSala);
+    
+    let infoSala =  $(this).attr("infoSala")+" - "+$(this).attr("horas")+" - "+$(this).attr("plan") + " - ";
+   
     let pagoReserva = $(this).attr("pagoReserva");
-    console.log("pagoReserva", pagoReserva);
+    
     let codigoReserva = $(this).attr("codigoReserva");
-    console.log("codigoReserva", codigoReserva);
+    
     let fechaIngreso = $(this).attr("fechaIngreso");
-    console.log("fechaIngreso", fechaIngreso);
+    
     let fechaSalida = $(this).attr("fechaSalida");
-    console.log("fechaSalida", fechaSalida);
+
+    crearCookie("idSala", idSala, 1);
+    crearCookie("imgSala", imgSala, 1);
+    crearCookie("infoSala", infoSala, 1);
+    crearCookie("pagoReserva", pagoReserva, 1);
+    crearCookie("codigoReserva", codigoReserva, 1);
+    crearCookie("fechaIngreso", fechaIngreso, 1);
+    crearCookie("fechaSalida", fechaSalida, 1);
+
+    
+    
     
 
   })
