@@ -2,8 +2,21 @@
 
 $categorias = ControladorCategorias::ctrMostrarCategorias();
 
-?>
+if(isset($_SESSION["validarSesion"])){
 
+	if($_SESSION["validarSesion"] == "ok"){
+
+		$item = "id_u";
+		$valor = $_SESSION["id"];
+
+		$usuario = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
+
+	}
+
+}
+
+
+?>
 
 <!--=====================================
 HEADER
@@ -123,9 +136,44 @@ HEADER
 
 			<div class="grid-item d-none d-lg-block mt-2">
 
-				<a href="#modalIngreso" data-toggle="modal"><i class="far fa-user"></i></a>
+			<?php if (isset($_SESSION["validarSesion"])): ?>
+
+				<?php if ($_SESSION["validarSesion"] == "ok"): ?>
+
+					<a href="<?php echo $ruta.'perfil'; ?>">
+
+					<?php if ($usuario["foto"] == ""): ?>
+					
+						<i class="fas fa-user"></i>
+
+					<?php else: ?>
+
+						<?php if ($usuario["modo"] == "directo"): ?>
+
+							<img src="<?php echo $servidor.$usuario["foto"]; ?>" class="img-fluid rounded-circle" style="width:30px">
+						
+						<?php else: ?>
+							
+							<img src="<?php echo $usuario["foto"]; ?>" class="img-fluid rounded-circle" style="width:30px">
+
+						<?php endif ?>	
+
+					<?php endif ?>	
+
+					</a>
+
+				<?php endif ?>	
+
+			<?php else: ?>
+
+				<a href="#modalIngreso" data-toggle="modal"><i class="fas fa-user"></i></a>
+
+			<?php endif ?>
+
+				
 
 			</div>
+
 
 			<!-- SELECCIÓN DE IDIOMA -->
 

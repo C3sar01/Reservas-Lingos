@@ -38,7 +38,7 @@ INFO-PERFIL
 	height: 125px !important;
 }
 
-.colIzqPerfil .descripcionPerfil .card ul li{
+.colIzqPerfil .descripcionPerfil .card ul li.misReservas{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 100;
 	color:#777;

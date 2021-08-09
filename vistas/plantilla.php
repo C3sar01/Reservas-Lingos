@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $ruta = ControladorRuta::ctrRuta();
 $servidor = ControladorRuta::ctrServidor();
 
@@ -132,8 +134,63 @@ if(isset($_GET["pagina"])){
 	
 	}
 
+	/*=============================================
+                 VALIDAR CORREO ELECTRÓNICO
+    =============================================*/
+
+	$item = "email_encriptado";
+
+	$valor = $_GET["pagina"];
+
+	$validarCorreo = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
+
+	if ($validarCorreo["email_encriptado"] ==  $_GET["pagina"]) {
+
+		$id = $validarCorreo["id_u"];
+
+		$item = "verificacion";
+
+		$valor = 1;
+
+		$verificarUsuario = ControladorUsuarios::ctrActualizarUsuario($id, $item, $valor);
+
+		if ($verificarUsuario == "ok") {
+			
+		
+
+		echo '<script>
+
+					swal({
+					 		type:"success",
+							title: "CORRECTO!",
+						  	text: "¡Su cuenta ha sido verificada, ya puede ingresar al sistema!",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						
+						}).then(function(result){
+
+							if(result.value){
+								history.back();
+							}
+					});
+
+				</script>';
+
+				return;
+		}
+		
+	}
+
+
+
+
+
+	/*=============================================
+                PAGINAS INTERNAS
+    =============================================*/
+
 	
-	if($_GET["pagina"] == "reservas" || $_GET["pagina"] == "perfil"){
+	if($_GET["pagina"] == "reservas" || $_GET["pagina"] == "perfil" || $_GET["pagina"] == "salir"){
 
 		include "paginas/".$_GET["pagina"].".php";
 		
@@ -161,7 +218,7 @@ if(isset($_GET["pagina"])){
 
 
 /*=============================================
-PÁGINAS
+ARCHIVOS JAVASCRIPT UTILIZADOS
 =============================================*/
 
 
@@ -183,6 +240,25 @@ include "paginas/modulos/footer.php";
 <script src="js/agendas.js"></script>
 <script src="js/usuarios.js"></script>
 <!--<script src="https://sdk.mercadopago.com/js/v2"></script>-->
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '155064193409841',
+      xfbml      : true,
+      version    : 'v11.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
 
 

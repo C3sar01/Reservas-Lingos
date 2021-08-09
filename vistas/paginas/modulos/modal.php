@@ -39,7 +39,7 @@ VENTANA MODAL PLANES
 VENTANA MODAL INGRESO
 ======================================-->
 
-<div class="modal" id="modalIngreso">
+<div class="modal formulario" id="modalIngreso">
 
   <div class="modal-dialog">
 
@@ -60,7 +60,7 @@ VENTANA MODAL INGRESO
       		
 			<div class="px-2 flex-fill">
 
-				<p class="p-2 bg-primary text-center text-white">
+				<p class="p-2 bg-primary text-center text-white facebook" style="cursor:pointer">
 					<i class="fab fa-facebook"></i>
 					Ingreso con Facebook
 				</p>
@@ -69,10 +69,14 @@ VENTANA MODAL INGRESO
 
 			<div class="px-2 flex-fill">
 
-				<p class="p-2 bg-danger text-center text-white">
+			<a href="<?php echo $rutaGoogle; ?>">
+
+				<p class="p-2 bg-danger text-center text-white" style="cursor:pointer">
 					<i class="fab fa-google"></i>
 					Ingreso con Google
 				</p>
+
+			</a>
 
 			</div>
 
@@ -84,7 +88,7 @@ VENTANA MODAL INGRESO
 
 		<hr class="mt-0">
 
-		<form>
+		<form method="post">
 
 			<div class="input-group mb-3">
 
@@ -98,7 +102,7 @@ VENTANA MODAL INGRESO
 
 			    </div>
 
-			    <input type="email" class="form-control" placeholder="Email">
+			    <input type="email" class="form-control" placeholder="Email" name="ingresoEmail" required>
 
 		  	</div>
 
@@ -114,12 +118,25 @@ VENTANA MODAL INGRESO
 
 			    </div>
 
-			    <input type="password" class="form-control" placeholder="Contraseña">
+			    <input type="password" class="form-control" placeholder="Contraseña" name="ingresoPassword" required>
 
 		  	</div>
 			
 
 			<input type="submit" class="btn btn-dark btn-block" value="Ingresar">
+
+			<?php
+
+			$ingresoUsuario = new ControladorUsuarios();
+			$ingresoUsuario -> ctrIngresoUsuario();
+
+
+
+
+
+
+
+            ?>
 
 		</form>
 
@@ -150,7 +167,7 @@ VENTANA MODAL INGRESO
 VENTANA MODAL REGISTRO
 ======================================-->
 
-<div class="modal" id="modalRegistro">
+<div class="modal formulario" id="modalRegistro">
 
   <div class="modal-dialog">
 
@@ -171,7 +188,7 @@ VENTANA MODAL REGISTRO
       		
 			<div class="px-2 flex-fill">
 
-				<p class="p-2 bg-primary text-center text-white">
+				<p class="p-2 bg-primary text-center text-white facebook" style="cursor:pointer">
 					<i class="fab fa-facebook"></i>
 					Ingreso con Facebook
 				</p>
@@ -180,10 +197,13 @@ VENTANA MODAL REGISTRO
 
 			<div class="px-2 flex-fill">
 
-				<p class="p-2 bg-danger text-center text-white">
+			<a href="<?php echo $rutaGoogle; ?>">
+
+				<p class="p-2 bg-danger text-center text-white" style="cursor:pointer">
 					<i class="fab fa-google"></i>
 					Ingreso con Google
 				</p>
+            </a>
 
 			</div>
 
@@ -195,7 +215,7 @@ VENTANA MODAL REGISTRO
 
 		<hr class="mt-0">
 
-		<form>
+		<form method="post">
 
 			<div class="input-group mb-3">
 
@@ -209,7 +229,7 @@ VENTANA MODAL REGISTRO
 
 			    </div>
 
-			    <input type="text" class="form-control" placeholder="Nombre">
+			    <input type="text" class="form-control" placeholder="Nombre" name="registroNombre" required>
 
 		  	</div>
 
@@ -226,7 +246,7 @@ VENTANA MODAL REGISTRO
 
 			    </div>
 
-			    <input type="email" class="form-control" placeholder="Email">
+			    <input type="email" class="form-control" placeholder="Email" name="registroEmail" required>
 
 		  	</div>
 
@@ -242,12 +262,22 @@ VENTANA MODAL REGISTRO
 
 			    </div>
 
-			    <input type="password" class="form-control" placeholder="Contraseña">
+			    <input type="password" class="form-control" placeholder="Contraseña" name="registroPassword" required>
 
 		  	</div>
 			
 
-			<input type="submit" class="btn btn-dark btn-block" value="Registrarse">
+			<input type="submit" class="btn btn-dark btn-block" value="Registrarse" >
+
+			<?php
+
+			$registroUsuario = new ControladorUsuarios();
+
+			$registroUsuario -> ctrRegistroUsuario();
+
+
+           
+            ?>
 
 		</form>
 
