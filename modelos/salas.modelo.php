@@ -21,4 +21,22 @@ Class ModeloSalas{
 
     }
 
+    /*=============================================
+	Mostrar Sala En Singular
+	=============================================*/
+
+	static public function mdlMostrarSala($tabla, $valor){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_s = :id_s");
+
+		$stmt -> bindParam(":id_s", $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		
+	
+	}
+
 }

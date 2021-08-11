@@ -10,7 +10,7 @@ $(".datepicker.entrada").datetimepicker({
   defaultTime: new Date().getHours() + 1 + ":00",
   todayHighlight: true,
   allowTimes: [
-    "12:00",
+    "10:30",
     "13:00",
     "14:00",
     "15:00",
@@ -33,7 +33,7 @@ $(".datepicker.entrada").change(function () {
     defaultTime: new Date().getHours() + 1 + ":00",
     todayHighlight: true,
     allowTimes: [
-      "12:00",
+      "10:30",
       "13:00",
       "14:00",
       "15:00",
@@ -216,7 +216,7 @@ if ($(".infoReservas").html() != undefined) {
             });
 
             $(".infoDisponibilidad").html(
-              '<h5 class="pb-5 float-left">¡Lo sentimos, no hay disponibilidad :(<br><br><strong>¡Vuelve a intentarlo!</strong></h5>'
+              '<h5 class="pb-5 float-left">¡Lo sentimos, no hay disponibilidad :(<br><br><strong>¡Selecciona otros horarios!</strong></h5>'
             );
 
             break;

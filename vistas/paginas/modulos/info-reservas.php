@@ -3,7 +3,9 @@
 if (isset($_POST["id-sala"])) {
 
 	$valor = $_POST["id-sala"];
-	echo '<pre class=bg-white>';print_r($valor);echo '</pre>';
+	echo '<pre class=bg-white>';
+	print_r($valor);
+	echo '</pre>';
 	$reserva = ControladorReserva::ctrMostrarReserva($valor);
 
 	$indice = 0;
@@ -23,8 +25,8 @@ if (isset($_POST["id-sala"])) {
 		}
 	}
 	/*=============================================
-	SELECCIONAR VALORES
-	=============================================*/
+    SELECCIONAR VALORES
+    =============================================*/
 	date_default_timezone_set("America/Santiago");
 
 	$hora = getdate();
@@ -34,8 +36,8 @@ if (isset($_POST["id-sala"])) {
 	$precioHora = [];
 
 	/*=============================================
-	CONDICIÓN DE VALOR DESPUÉS DE LAS 16:00HRS
-	=============================================*/
+    CONDICIÓN DE VALOR DESPUÉS DE LAS 16:00HRS
+    =============================================*/
 
 	if ($hora["hours"] >= 16 && $hora["hours"] <= 20) {
 
@@ -45,26 +47,20 @@ if (isset($_POST["id-sala"])) {
 		$precioHora = $reserva[$indice]["hora_baja"];
 	}
 
-/*=============================================
-	DEFNIR CANTIDAD DE HORAS POR RESERVA
-=============================================*/
+	/*=============================================
+    DEFNIR CANTIDAD DE HORAS POR RESERVA
+    =============================================*/
 	$horaIngreso = new DateTime($_POST["fecha-ingreso"]);
 	$horaSalida = new DateTime($_POST["fecha-salida"]);
 	$diff = $horaIngreso->diff($horaSalida);
 	$horas = $diff->h;
 
-	if($horas == 0){
+	if ($horas == 0) {
 		$horas = 1;
 	}
-
-
-
 } else {
 	echo '<script> window.location="' . $ruta . '"</script>';
 }
-
-
-
 
 ?>
 
@@ -72,7 +68,7 @@ if (isset($_POST["id-sala"])) {
 INFO RESERVAS
 ======================================-->
 
-<div class="infoReservas container-fluid bg-white p-0 pb-5" idSala="<?php echo $_POST["id-sala"];  ?>" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" fechaSalida="<?php echo $_POST["fecha-salida"];  ?>" horas="<?php echo $horas; ?>">
+<div class="infoReservas container-fluid bg-white p-0 pb-5" idSala="<?php echo $_POST["id-sala"]; ?>" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>">
 
 	<div class="container">
 
@@ -100,8 +96,21 @@ INFO RESERVAS
 
 					<h6 class="float-right px-3">
 
-						<br>
-						<a href="<?php echo $ruta;  ?>perfil" style="color:#FFCC29">Ver tus reservas</a>
+						<?php if (isset($_SESSION["validarSesion"])) : ?>
+
+							<?php if ($_SESSION["validarSesion"] == "ok") : ?>
+
+								<br>
+								<a href="<?php echo $ruta; ?>perfil" style="color:#FFCC29">Ver tus reservas</a>
+
+							<?php endif ?>
+
+						<?php else : ?>
+
+							<br>
+							<a href="#modalIngreso" data-toggle="modal" style="color:#FFCC29">Ver tus reservas</a>
+
+						<?php endif ?>
 
 					</h6>
 
@@ -224,14 +233,14 @@ INFO RESERVAS
 			<div class="form-group">
 				<label>Sala:</label>
 				<input type="text" class="form-control" value="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" readonly>
-                 <br>
+				<br>
 				<?php
 
 				$galeria = json_decode($reserva[$indice]["galeria"], true);
 
 				?>
 
-				<img src="<?php echo $servidor.$galeria[0]; ?>" class="img-fluid">
+				<img src="<?php echo $servidor . $galeria[0]; ?>" class="img-fluid">
 
 				<!-- ESCENARIO 2 Y 3 DE RESERVAS -->
 				<input type="text" class="form-control tituloReserva" value="" readonly>
@@ -240,8 +249,10 @@ INFO RESERVAS
 
 			<div class="form-group valores">
 
-			    <label><h3 class="">Si no te basta con reservar por horas, también revisa los planes disponibles!</h3></label>
-                <br><button type="button" class="btn btn-dark float-right comprarPlan">Comprar un plan</button>
+				<label>
+					<h3 class="">Si no te basta con reservar por horas, también revisa los planes disponibles!</h3>
+				</label>
+				<br><button type="button" class="btn btn-dark float-right comprarPlan">Comprar un plan</button>
 				<br><label>Planes Mensuales:</label>
 
 
@@ -249,54 +260,57 @@ INFO RESERVAS
 				<select class="form-control planes" id="selectPlanes" disabled>
 
 					<option value="" selected disabled>Estos son los planes disponibles</option>
-					<option id="16" value="<?php echo ($plan16)?>,plan16">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
-					<option id="32" value="<?php echo ($plan32)?>,plan32">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
-					<option id="64" value="<?php echo ($plan64)?>,plan64">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
+					<option id="16" value="<?php echo ($plan16) ?>,plan16">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
+					<option id="32" value="<?php echo ($plan32) ?>,plan32">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
+					<option id="64" value="<?php echo ($plan64) ?>,plan64">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
 
 				</select>
 
-				
+
 
 
 
 			</div>
-			
+
 
 			<div class="row py-4">
 
 				<div class="col-12 col-lg-6 col-xl-7 text-center text-lg-left">
 
-					<h1 class="precioReserva">$<span><?php echo number_format($precioHora * $horas);?></span><br>CLP</h1>
+					<h1 class="precioReserva">$<span><?php echo number_format($precioHora * $horas); ?></span><br>CLP</h1>
 
 				</div>
 
 				<div class="col-12 col-lg-6 col-xl-5">
 
-					<a href="<?php echo $ruta;?>perfil" 
-					class="pagarReserva" 
-					idSala="<?php echo $reserva[$indice]["id_s"]; ?>"
-					imgSala="<?php echo $servidor.$galeria[0];  ?>"
-					infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>"
-					pagoReserva="<?php echo ($precioHora * $horas);?>"
-					pagoPlan="<?php echo number_format($precioHora * $horas);?>"
-					codigoReserva=""
-					fechaIngreso="<?php echo $_POST["fecha-ingreso"];?>"
-					fechaSalida="<?php echo $_POST["fecha-salida"];?>"
-					horas="Precio Hora"
-					plan="Precio plan"
+					<?php if (isset($_SESSION["validarSesion"])) : ?>
+
+						<?php if ($_SESSION["validarSesion"] == "ok") : ?>
+
+							<a href="<?php echo $ruta; ?>perfil" class="pagarReserva" idSala="<?php echo $reserva[$indice]["id_s"]; ?>" imgSala="<?php echo $servidor . $galeria[0]; ?>" infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" pagoReserva="<?php echo ($precioHora * $horas); ?>" pagoPlan="<?php echo number_format($precioHora * $horas); ?>" codigoReserva="" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="Precio Hora" plan="Precio plan">
 
 
 
-					>
-						<button type="button" class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
-					</a>
+
+								<button type="button" class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
+							</a>
+
+						<?php endif ?>
+
+					<?php else : ?>
+
+						<a href="#modalIngreso" data-toggle="modal" class="pagarReserva" idSala="<?php echo $reserva[$indice]["id_s"]; ?>" imgSala="<?php echo $servidor . $galeria[0]; ?>" infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" pagoReserva="<?php echo ($precioHora * $horas); ?>" pagoPlan="<?php echo number_format($precioHora * $horas); ?>" codigoReserva="" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="Precio Hora" plan="Precio plan">
+							<button type="button" class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
+						</a>
+
+					<?php endif ?>
 
 				</div>
 
 			</div>
 
 		</div>
-		
+
 
 	</div>
 

@@ -13,5 +13,19 @@ static public function ctrMostrarSalas($valor){
     return $respuesta;
 }
 
+/*=============================================
+	Mostrar Sala En Singular
+=============================================*/
+	
+	static public function ctrMostrarSala($valor){
+
+		$tabla = "salas";
+
+		$respuesta = ModeloSalas::mdlMostrarSala($tabla, $valor);
+
+		return $respuesta;
+
+	}
+
 
 }
