@@ -17,11 +17,13 @@ INFO-RESERVAS
 	border-radius:0;
 	background:black;
 	color:white;
+	
 }
 
 .colDerReservas{
 	transition:0.3s all;
 }
+
 
 /*=============================================
 TABLET VERTICAL (MD revisamos en 768px hacia abajo)

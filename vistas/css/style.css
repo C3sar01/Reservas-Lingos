@@ -53,9 +53,9 @@ header .bloqueReservas .campana-y-reserva{
 	cursor:pointer;
 }
 
-header .bloqueReservas .fa-concierge-bell{
-	font-size:25px; 
-	color:#847059;
+header .bloqueReservas .fa-calendar-day{
+	font-size:30px; 
+	color:#03101a;
 }
 
 header .bloqueReservas .fa-caret-down, header .bloqueReservas .fa-caret-up{

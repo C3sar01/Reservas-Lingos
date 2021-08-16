@@ -315,16 +315,16 @@ function colDerReservas() {
   });
   
   $(".comprarHora").click(function () {
-    $(".planes").attr("disabled", true);
+    $(".elegirPlan").attr("disabled", true);
     $(".horas").attr("disabled", false);
   });
 
   $(".comprarPlan").click(function () {
-    $(".planes").attr("disabled", false);
+    $(".elegirPlan").attr("disabled", false);
     $(".horas").attr("disabled", true);
   });
 
-  $(".planes").change(function () {
+  $(".elegirPlan").change(function () {
     $(".precioReserva span").html($(this).val().split(",")[0]);
     $(".precioReserva span").number(true);
   });

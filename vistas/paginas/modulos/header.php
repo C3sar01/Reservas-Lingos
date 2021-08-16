@@ -48,7 +48,7 @@ HEADER
 
 				<div class="py-2 campana-y-reserva mostrarBloqueReservas" modo="abajo">
 
-					<i class="fas fa-book lead mx-2"></i>
+					<i class="fas fa-calendar-day lead mx-2"></i>
 
 					<i class="fas fa-caret-up lead mx-2 flechaReserva"></i>
 
@@ -192,7 +192,7 @@ HEADER
 
 			<div class="grid-item mt-1 mt-sm-3 mt-md-4 mt-lg-2 botonMenu">
 
-				<i class="fas fa-ellipsis-h"></i>
+				<i class="fas fa-bars"></i>
 
 			</div>
 

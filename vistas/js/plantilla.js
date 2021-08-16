@@ -3,37 +3,6 @@ let urlServidor = $("#urlServidor").val();
 $(".contactenos form input, .contactenos form textarea").val("");
 
 
-/*=============================================
-ANIMACIONES CON EL SCROLL
-=============================================*/
-
-$(window).scroll(function(){
-
-	var posY = window.pageYOffset;
-
-	if(window.matchMedia("(min-width:769px)").matches){
-	
-		if(posY > 50){
-
-			$(".formReservas").slideUp("fast");
-			$(".mostrarBloqueReservas").attr("modo", "arriba");
-			$(".flechaReserva").removeClass("fa-caret-up");
-			$(".flechaReserva").addClass("fa-caret-down");
-
-		}else{
-
-			$(".formReservas").slideDown("fast");
-			$(".mostrarBloqueReservas").attr("modo", "abajo");
-			$(".flechaReserva").removeClass("fa-caret-down");
-			$(".flechaReserva").addClass("fa-caret-up");
-
-		}
-
-	}
-
-	posicionBloqueReservas();
-
-})
 
 /*=============================================
 BOTÓN RESERVA

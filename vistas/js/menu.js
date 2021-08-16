@@ -63,7 +63,7 @@ $(".btnModalPlan").click(function(e){
 
 		e.preventDefault();
 
-		var vinculo = $(this).attr("href");
+		let vinculo = $(this).attr("href");
 		
 		$("html, body").animate({
 

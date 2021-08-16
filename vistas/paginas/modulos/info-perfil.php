@@ -475,7 +475,13 @@ INFO PERFIL
 										</figure>
 
 										<form action="<?php echo $ruta . 'perfil'; ?>" method="POST" class="pt-4">
-											<script src="https://www.mercadopago.cl/integrations/v1/web-tokenize-checkout.js" data-public-key="TEST-34516dc2-8177-40e6-94fe-68534521386b" data-transaction-amount="<?php echo $_COOKIE["pagoReserva"]; ?>" data-button-label="Pagar" data-summary-product-label="<?php echo $_COOKIE["infoSala"]; ?>" data-summary-product="<?php echo $_COOKIE["pagoReserva"]; ?>">
+											<script 
+											src="https://www.mercadopago.cl/integrations/v1/web-tokenize-checkout.js" 
+											data-public-key="TEST-34516dc2-8177-40e6-94fe-68534521386b" 
+											data-transaction-amount="<?php echo $_COOKIE["pagoReserva"]; ?>" 
+											data-button-label="Pagar" 
+											data-summary-product-label="<?php echo $_COOKIE["infoSala"]; ?>" 
+											data-summary-product="<?php echo $_COOKIE["pagoReserva"]; ?>">
 
 											</script>
 										</form>
