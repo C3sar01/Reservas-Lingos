@@ -1,5 +1,6 @@
 let urlPrincipal = $("#urlPrincipal").val();
 let urlServidor = $("#urlServidor").val();
+$(".contactenos form input, .contactenos form textarea").val("");
 
 
 /*=============================================
@@ -223,13 +224,7 @@ SLIDE HABITACIONES
 
 });
 
- /*=============================================
-360 GRADOS
-=============================================*/
 
- $("#myPano").pano({
-	img: "img/360.jpg"
-});
 
  /*=============================================
 VISUALIZAR MULTIMEDIA SALA

@@ -121,7 +121,8 @@ class ControladorUsuarios
 							swal({
 									type:"error",
 								  	title: "¡ERROR!",
-								  	text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a ' . $_POST["registroEmail"] . $mail->ErrorInfo . ', por favor inténtelo nuevamente",
+								  	text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a ' . $_POST["registroEmail"] 
+                                      . $mail->ErrorInfo . ', por favor inténtelo nuevamente",
 								  	showConfirmButton: true,
 									confirmButtonText: "Cerrar"
 
@@ -217,7 +218,8 @@ class ControladorUsuarios
 
         if (isset($_POST["ingresoEmail"])) {
 
-            if (preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["ingresoEmail"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingresoPassword"])) {
+            if (preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["ingresoEmail"]) 
+            && preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingresoPassword"])) {
 
                 $encriptarPassword = crypt($_POST["ingresoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
@@ -236,7 +238,8 @@ class ControladorUsuarios
 								swal({
 										type:"error",
 									  	title: "¡ERROR!",
-									  	text: "¡El correo electrónico aún no ha sido verificado, por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico para verificar la cuenta!",
+									  	text: "¡El correo electrónico aún no ha sido verificado, por favor revise la bandeja de 
+                                          entrada o la carpeta de SPAM de su correo electrónico para verificar la cuenta!",
 									  	showConfirmButton: true,
 										confirmButtonText: "Cerrar"
 
@@ -374,6 +377,582 @@ class ControladorUsuarios
 			}
 
 		}
+	}
+
+    /*=============================================
+	CAMBIAR FOTO PERFIL
+	=============================================*/
+
+	public function ctrCambiarFotoPerfil(){
+
+		if(isset($_POST["idUsuarioFoto"])){
+
+			$ruta = "backend/".$_POST["fotoActual"];
+
+			if(isset($_FILES["cambiarImagen"]["tmp_name"]) && !empty($_FILES["cambiarImagen"]["tmp_name"])){
+
+				list($ancho, $alto) = getimagesize($_FILES["cambiarImagen"]["tmp_name"]);
+
+				$nuevoAncho = 500;
+				$nuevoAlto = 500;
+
+				/*=============================================
+				CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+				=============================================*/
+
+				$directorio = "backend/vistas/img/usuarios/".$_POST["idUsuarioFoto"];
+
+				/*=============================================
+				PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+				=============================================*/
+
+				if(!file_exists($directorio)){
+					
+					mkdir($directorio, 0755);
+
+				}else{
+
+					if($ruta != ""){	
+
+						unlink($ruta);
+
+					}
+
+				}
+                
+                
+
+				/*=============================================
+				DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+				=============================================*/
+
+				if($_FILES["cambiarImagen"]["type"] == "image/jpeg"){
+
+					$aleatorio = mt_rand(100,999);
+
+					$ruta = $directorio."/".$aleatorio.".jpg";
+
+					$origen = imagecreatefromjpeg($_FILES["cambiarImagen"]["tmp_name"]);
+
+					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
+
+					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					imagejpeg($destino, $ruta);	
+
+				}
+
+				else if($_FILES["cambiarImagen"]["type"] == "image/png"){
+
+					$aleatorio = mt_rand(100,999);
+
+					$ruta = $directorio."/".$aleatorio.".png";
+
+					$origen = imagecreatefrompng($_FILES["cambiarImagen"]["tmp_name"]);						
+
+					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+					imagealphablending($destino, FALSE);
+		
+					imagesavealpha($destino, TRUE);
+
+					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+					imagepng($destino, $ruta);
+
+				}else{
+
+					echo'<script>
+
+						swal({
+								type:"error",
+							  	title: "¡CORREGIR!",
+							  	text: "¡No se permiten formatos diferentes a JPG o PNG!",
+							  	showConfirmButton: true,
+								confirmButtonText: "Cerrar"
+							  
+						}).then(function(result){
+
+								if(result.value){   
+								    history.back();
+								  } 
+						});
+
+					</script>';
+
+
+				}
+              
+				$ruta = substr($ruta, 8);	
+
+			}
+
+			$tabla = "usuarios";
+			$id = $_POST["idUsuarioFoto"];
+			$item = "foto";
+			$valor = $ruta;
+
+			$actualizarFotoPerfil = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item, $valor);
+
+			if($actualizarFotoPerfil == "ok"){
+
+				echo '<script>
+
+					swal({
+						type:"success",
+					  	title: "¡CORRECTO!",
+					  	text: "¡Tu foto de perfil ha sido actualizada!",
+					  	showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					  
+					}).then(function(result){
+
+							if(result.value){   
+							    history.back();
+							  } 
+					});
+
+				</script>';
+
+			}
+
+		}	
+
+	}
+
+    /*=============================================
+	CAMBIAR PASSWORD
+	=============================================*/
+
+	public function ctrCambiarPassword(){
+
+		if(isset($_POST["editarPassword"])){
+
+			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["editarPassword"])){
+
+				$encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+				$tabla = "usuarios";
+				$id = $_POST["idUsuarioPassword"];
+				$item = "password";
+				$valor = $encriptar;
+
+				$actualizarPassword = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item, $valor);
+
+				if($actualizarPassword == "ok"){
+
+					echo '<script>
+
+						swal({
+							type:"success",
+						  	title: "¡CORRECTO!",
+						  	text: "¡Sus datos han sido actualizados!",
+						  	showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						  
+						}).then(function(result){
+
+								if(result.value){   
+								    history.back();
+								  } 
+						});
+
+					</script>';
+
+				}
+
+			}else{
+
+				echo'<script>
+
+					swal({
+						type:"error",
+					  	title: "¡CORREGIR!",
+					  	text: "¡No se permiten caracteres especiales!",
+					  	showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					  
+					}).then(function(result){
+
+							if(result.value){   
+							    history.back();
+							  } 
+					});
+
+				</script>';
+
+		 	}
+
+
+		}
+
+
+	}
+
+	/*=============================================
+	RECUPERAR CONTRASEÑA
+	=============================================*/
+
+	public function ctrRecuperarPassword(){
+	
+		if(isset($_POST["emailRecuperarPassword"])){
+
+			if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', 
+            $_POST["emailRecuperarPassword"])){
+
+				/*=============================================
+				GENERAR CONTRASEÑA ALEATORIA
+				=============================================*/
+
+				function generarPassword($longitud){
+
+					$password = "";
+					$patron = "1234567890abcdefghijklmnopqrstuvwxyz";
+
+					$max = strlen($patron)-1;
+
+					for($i = 0; $i < $longitud; $i++){
+
+						$password .= $patron[mt_rand(0,$max)];
+
+					}
+
+					return $password;
+
+				}
+
+				$nuevaPassword = generarPassword(11);
+
+				$encriptar = crypt($nuevaPassword, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+				$tabla = "usuarios";
+				$item = "email";
+				$valor = $_POST["emailRecuperarPassword"];
+
+				$traerUsuario = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+
+				if($traerUsuario){
+
+					$id = $traerUsuario["id_u"];
+					$item = "password";
+					$valor = $encriptar;
+
+					$actualizarPassword = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item, $valor);
+
+					if($actualizarPassword  == "ok"){
+
+						/*=============================================
+						VERIFICACIÓN CORREO ELECTRÓNICO
+						=============================================*/
+
+						date_default_timezone_set("America/Bogota");
+
+						$ruta = ControladorRuta::ctrRuta();
+
+						$mail = new PHPMailer;
+
+						$mail->CharSet = 'UTF-8';
+
+						$mail->isMail();
+
+						$mail->setFrom('taylorburdett@lingos.cl', 'Lingos Talca');
+
+						$mail->addReplyTo('taylorburdett@lingos.cl', 'Lingos Talca');
+
+						$mail->Subject = "Por favor verifique su dirección de correo electrónico";
+
+						$mail->addAddress($_POST["emailRecuperarPassword"]);
+
+						$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+	
+							<center>
+								
+								<img style="padding:20px; width:10%" 
+								src="https://s3.amazonaws.com/storage.wobiz.com/66/66464/images/Original/1511194522_5dbcb581ff0b4dfc1a1a00941448c088.66464.jpeg">
+
+							</center>
+
+							<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+							
+								<center>
+								
+								<img style="padding:20px; width:15%" 
+								src="https://s3.amazonaws.com/storage.wobiz.com/66/66464/images/Original/1511194522_5dbcb581ff0b4dfc1a1a00941448c088.66464.jpeg">
+
+								<h3 style="font-weight:100; color:#999">SOLICITUD DE NUEVA CONTRASEÑA</h3>
+
+								<hr style="border:1px solid #ccc; width:80%">
+
+								<h4 style="font-weight:100; color:#999; padding:0 20px"><strong>Su nueva contraseña: </strong>'
+								.$nuevaPassword.'</h4>
+
+								<a href="'.$ruta.'" target="_blank" style="text-decoration:none">
+
+								<div style="line-height:30px; background:#0aa; width:60%; padding:20px; color:white">			
+									Haz click aquí
+								</div>
+
+								</a>
+
+								<h4 style="font-weight:100; color:#999; padding:0 20px">Ingrese nuevamente al sitio con esta contraseña 
+                                y recuerde cambiarla en el panel de perfil de usuario</h4>
+
+								<br>
+
+								<hr style="border:1px solid #ccc; width:80%">
+
+								<h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico 
+                                y la cuenta se eliminará.</h5>
+
+								</center>
+
+							</div>
+
+						</div>');
+
+						$envio = $mail->Send();
+
+						if(!$envio){
+
+							echo'<script>
+
+								swal({
+										type:"error",
+									  	title: "¡ERROR!",
+									  	text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a 
+										  '.$_POST["emailRecuperarPassword"]
+                                          .$mail->ErrorInfo.', por favor inténtelo nuevamente",
+									  	showConfirmButton: true,
+										confirmButtonText: "Cerrar"
+									  
+								}).then(function(result){
+
+										if(result.value){   
+										    history.back();
+										  } 
+								});
+
+							</script>';
+
+						}else{
+
+
+							echo'<script>
+
+								swal({
+									type:"success",
+								  	title: "¡SU SOLICITUD HA SIDO RECIBIDA!",
+								  	text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '
+                                      .$_POST["emailRecuperarPassword"].' para su cambio de contraseña!",
+								  	showConfirmButton: true,
+									confirmButtonText: "Cerrar"
+								  
+								}).then(function(result){
+
+										if(result.value){   
+										    history.back();
+										  } 
+								});
+
+							</script>';
+
+						}	
+
+
+					}
+
+
+				}else{
+
+					echo '<script>
+
+						swal({
+							type:"error",
+						  	title: "¡ERROR!",
+						  	text: "¡El correo no existe en el sistema, puede registrase nuevamente con ese correo!",
+						  	showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						  
+						}).then(function(result){
+
+								if(result.value){   
+								    history.back();
+								  } 
+						});
+
+					</script>';
+
+				}
+
+			}else{
+
+
+				echo'<script>
+
+					swal({
+						type:"error",
+					  	title: "¡CORREGIR!",
+					  	text: "¡No se permiten caracteres especiales!",
+					  	showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					  
+					}).then(function(result){
+
+							if(result.value){   
+							    history.back();
+							  } 
+					});
+
+				</script>';
+
+			}
+
+		}
+
+
+	}
+
+	/*=============================================
+	FORMULARIO CONTACTENOS
+	=============================================*/
+
+	public function ctrFormularioContactenos(){
+
+		if(isset($_POST["mensajeContactenos"])){
+
+			if( preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombreContactenos"]) &&
+				preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["apellidoContactenos"]) &&
+				preg_match('/^[0-9- ]+$/', $_POST["movilContactenos"]) &&
+			    preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["emailContactenos"]) &&
+			   preg_match('/^[?\\¿\\!\\¡\\:\\,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["mensajeContactenos"])
+			 ){
+				
+				/*=============================================
+				VERIFICACIÓN CORREO ELECTRÓNICO
+				=============================================*/
+
+				date_default_timezone_set("America/Santiago");
+
+				$ruta = ControladorRuta::ctrRuta();
+
+				$mail = new PHPMailer;
+
+				$mail->CharSet = 'UTF-8';
+
+				$mail->isMail();
+
+				$mail->setFrom('taylorburdett@lingos.cl', 'Lingos Talca');
+
+				$mail->addReplyTo('taylorburdett@lingos.cl', 'Lingos Talca');
+
+				$mail->Subject = "Por favor verifique su dirección de correo electrónico";
+
+				$mail->addAddress("tucorreo@tudominio.com");
+
+				$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+	
+						<center>
+
+							<img style="padding:20px; width:10%" 
+							src="https://s3.amazonaws.com/storage.wobiz.com/66/66464/images/Original/1511194522_5dbcb581ff0b4dfc1a1a00941448c088.66464.jpeg">
+
+						</center>
+
+						<div style="position:relative; margin:auto; width:600px; background:white; padding-bottom:20px">
+
+							<center>
+								
+								<img style="padding:20px; width:15%" src="https://image.flaticon.com/icons/png/512/16/16475.png">
+
+								<h3 style="font-weight:100; color:#999;">HA RECIBIDO UNA CONSULTA</h3>
+
+								<hr style="width:80%; border:1px solid #ccc">
+
+								<h4 style="font-weight:100; color:#999; padding:0px 20px; text-transform:uppercase">'.$_POST["nombreContactenos"].' '.$_POST["apellidoContactenos"].'</h4>
+								<h4 style="font-weight:100; color:#999; padding:0px 20px;">Móvil: '.$_POST["movilContactenos"].'</h4>
+								<h4 style="font-weight:100; color:#999; padding:0px 20px;">Email: '.$_POST["emailContactenos"].'</h4>
+								<h4 style="font-weight:100; color:#999; padding:0px 20px">'.$_POST["mensajeContactenos"].'</h4>
+
+								<hr style="width:80%; border:1px solid #ccc">
+
+							</center>
+
+						</div>
+						
+					</div>
+				');
+
+				$envio = $mail->Send();
+
+				if(!$envio){
+
+					echo'<script>
+
+						swal({
+								type:"error",
+							  	title: "¡ERROR!",
+							  	text: "¡Ha ocurrido un problema enviando el mensaje, vuelva a intentarlo!",
+							  	showConfirmButton: true,
+								confirmButtonText: "Cerrar"
+							  
+						}).then(function(result){
+
+								if(result.value){   
+								    history.back();
+								  } 
+						});
+
+					</script>';
+
+				}else{
+
+
+					echo'<script>
+
+							swal({
+								 	type: "success",
+							  		title: "¡OK!",
+							  		text: "¡Su mensaje ha sido enviado, muy pronto le responderemos!",					 
+									showConfirmButton: true,
+									confirmButtonText: "Cerrar"
+								
+								}).then(function(result){
+
+									if(result.value){
+										history.back();
+									}
+							});
+
+					</script>';
+
+				}	
+
+
+			}else{
+
+
+				echo '<script>
+
+					swal({
+					 		type:"error",
+							title: "¡ERROR!",
+						  	text: "¡Problemas al enviar el mensaje, revise que no tenga caracteres especiales!",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						
+						}).then(function(result){
+
+							if(result.value){
+								history.back();
+							}
+					});
+
+				</script>';
+
+			}
+
+		}
+
 	}
 
 }

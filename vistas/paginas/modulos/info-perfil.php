@@ -132,14 +132,15 @@ INFO PERFIL
 
 									$sala = ControladorSalas::ctrMostrarSala($value["id_salas"]);
 									$categoria = ControladorCategorias::ctrMostrarCategoria($sala["tipo_s"]);
-									
+
 
 									echo '<div class="d-lg-none d-flex py-2">
 									
 												<div class="p-2 flex-grow-1">
 
-													<h5>' .$sala["estilo"]. '</h5>
-													<h5 class="small text-gray-dark">Del ' . $value["fecha_ingreso"] . ' al ' . $value["fecha_salida"] . '</h5>
+													<h5>' . $sala["estilo"] . '</h5>
+													<h5 class="small text-gray-dark">Del ' . $value["fecha_ingreso"] . ' al ' .
+										$value["fecha_salida"] . '</h5>
 
 												</div>
 
@@ -173,12 +174,149 @@ INFO PERFIL
 
 										<li class="list-group-item small"><?php echo $usuario["nombre"]; ?></li>
 										<li class="list-group-item small"><?php echo $usuario["email"]; ?></li>
+
+										<?php if ($usuario["modo"] == "directo") : ?>
+
+											<li class="list-group-item small">
+
+												<button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#cambiarPassword">Cambiar Contraseña</button>
+
+											</li>
+
+											<!--=====================================
+                                              VENTANA PARA CAMBIAR CONTRASEÑA
+                                             ======================================-->
+
+											<div class="modal formulario" id="cambiarPassword">
+
+												<div class="modal-dialog">
+
+													<div class="modal-content">
+
+														<form method="post">
+
+															<div class="modal-header">
+
+																<h4 class="modal-title">Cambiar Contraseña</h4>
+
+																<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+															</div>
+
+															<div class="modal-body">
+
+																<input type="hidden" name="idUsuarioPassword" value="<?php echo $usuario["id_u"]; ?>">
+
+																<div class="form-group">
+
+																	<input type="password" class="form-control" placeholder="Nueva contraseña" name="editarPassword" required>
+
+																</div>
+
+															</div>
+
+															<div class="modal-footer d-flex justify-content-between">
+
+																<div>
+
+																	<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+																</div>
+
+																<div>
+
+																	<button type="submit" class="btn btn-primary">Enviar</button>
+
+																</div>
+
+															</div>
+
+															<?php
+
+															$cambiarPassword = new ControladorUsuarios();
+															$cambiarPassword->ctrCambiarPassword();
+
+															?>
+
+														</form>
+
+													</div>
+
+												</div>
+
+											</div>
+
+										<?php endif ?>
+
 										<li class="list-group-item small">
-											<button class="btn btn-dark btn-sm">Cambiar Contraseña</button>
+											<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#cambiarFotoPerfil">Cambiar Imagen</button>
 										</li>
-										<li class="list-group-item small">
-											<button class="btn btn-primary btn-lg">Cambiar Imagen</button>
-										</li>
+
+										<!--=====================================
+										VENTANA PARA CAMBIAR FOTO DE PERFIL
+										======================================-->
+
+										<div class="modal formulario" id="cambiarFotoPerfil">
+
+											<div class="modal-dialog">
+
+												<div class="modal-content">
+
+													<form method="post" enctype="multipart/form-data">
+
+														<div class="modal-header">
+
+															<h4 class="modal-title">Cambiar Imagen</h4>
+
+															<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+														</div>
+
+														<div class="modal-body">
+
+															<input type="hidden" name="idUsuarioFoto" value="<?php echo $usuario["id_u"]; ?>">
+
+															<div class="form-group">
+
+																<input type="file" class="form-control-file border" name="cambiarImagen" required>
+
+																<input type="hidden" name="fotoActual" value="<?php echo $usuario["foto"]; ?>">
+
+															</div>
+
+														</div>
+
+														<div class="modal-footer d-flex justify-content-between">
+
+															<div>
+
+																<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+															</div>
+
+															<div>
+
+																<button type="submit" class="btn btn-primary">Enviar</button>
+
+															</div>
+
+														</div>
+
+														<?php
+
+														$cambiarImagen = new ControladorUsuarios();
+														$cambiarImagen->ctrCambiarFotoPerfil();
+
+
+														?>
+
+													</form>
+
+												</div>
+
+											</div>
+
+										</div>
 
 									</ul>
 
@@ -223,7 +361,8 @@ INFO PERFIL
 							$hoy = date("Y-m-d");
 							if ($hoy >= $_COOKIE["fechaIngreso"] || $hoy >= $_COOKIE["fechaSalida"]) {
 
-								echo '<div class= "alert alert-danger">Lo sentimos, las fechas de la reserva no pueden ser igual o inferiores al dia de hoy,
+								echo '<div class= "alert alert-danger">Lo sentimos, las fechas de la reserva no pueden ser igual o 
+								inferiores al dia de hoy,
 							        vuelve a intentarlo</div>';
 
 								$validarPagoReserva = false;
@@ -437,7 +576,7 @@ INFO PERFIL
 									<th>Nombre de Sala</th>
 									<th>Fecha de Ingreso</th>
 									<th>Fecha de Salida</th>
-									
+
 								</tr>
 							</thead>
 							<tbody>
@@ -462,7 +601,7 @@ INFO PERFIL
 
 							     		<td>' . ($key + 1) . '</td>
 							     		<td>' . $value["codigo_reserva"] . '</td>
-							     		<td class="text-uppercase">' .$sala["estilo"] . '</td>
+							     		<td class="text-uppercase">' . $sala["estilo"] . '</td>
 							     		<td>' . $value["fecha_ingreso"] . '</td>
 							     		<td>' . $value["fecha_salida"] . '</td>
 							 	

@@ -1,3 +1,4 @@
+
 <!--=====================================
 VENTANA MODAL PLANES
 ======================================-->
@@ -121,6 +122,16 @@ VENTANA MODAL INGRESO
 			    <input type="password" class="form-control" placeholder="Contraseña" name="ingresoPassword" required>
 
 		  	</div>
+
+			  <div class="text-center pb-3">
+		
+				<a href="#modalRecuperarPassword" data-toggle="modal" data-dismiss="modal">
+					¿Olvidó su contraseña?
+				</a>
+
+			</div>
+
+
 			
 
 			<input type="submit" class="btn btn-dark btn-block" value="Ingresar">
@@ -303,3 +314,64 @@ VENTANA MODAL REGISTRO
   </div>
 
 </div>
+
+<!--=====================================
+VENTANA MODAL RECUPERAR CONTRASEÑA
+======================================-->
+
+<div class="modal formulario" id="modalRecuperarPassword">
+	
+	<div class="modal-dialog">
+
+	    <div class="modal-content">
+
+	    	<div class="modal-header bg-info text-white">
+
+		        <h4 class="modal-title">Recuperar contraseña</h4>
+
+		        <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+
+		    </div>
+
+			 <div class="modal-body">
+			 	
+				<form method="post">
+
+					<p class="text-muted">Escriba su correo electrónico con el que estás registrado y allí le enviaremos una nueva contraseña:</p>
+
+					<div class="input-group mb-3">
+						
+						<div class="input-group-prepend">
+
+					      <span class="input-group-text">
+					      	
+					      	<i class="far fa-envelope"></i>
+
+					      </span>
+
+					    </div>
+
+					    <input type="email" class="form-control" placeholder="Email" name="emailRecuperarPassword" required>
+
+					</div>
+
+					<input type="submit" class="btn btn-dark btn-block" value="Enviar">
+
+					<?php
+
+						$recuperarPassword = new ControladorUsuarios();
+						$recuperarPassword -> ctrRecuperarPassword();
+
+					?>
+
+				</form>
+
+			 </div>
+
+	    </div>
+
+    </div>
+
+
+</div>
+

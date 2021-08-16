@@ -53,21 +53,24 @@ class ModeloUsuarios
 	ACTUALIZAR USUARIO
 	=============================================*/
 
-	static public function mdlActualizarUsuario($tabla, $id, $item, $valor)
-	{
+	static public function mdlActualizarUsuario($tabla, $id, $item, $valor){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item = :$item WHERE id_u = :id_u");
 
-		$stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
-		$stmt->bindParam(":id_u", $id, PDO::PARAM_INT);
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$stmt -> bindParam(":id_u", $id, PDO::PARAM_INT);
 
-		if ($stmt->execute()) {
+		if($stmt -> execute()){
 
 			return "ok";
-		} else {
+
+		}else{
 
 			echo "\nPDO::errorInfo():\n";
-			print_r(Conexion::conectar()->errorInfo());
+    		print_r(Conexion::conectar()->errorInfo());
+
 		}
+
+		
 	}
 }

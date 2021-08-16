@@ -74,7 +74,7 @@ header .formReservas{
 }
 
 header .formReservas .input-group-lg input, header .formReservas select{
-	font-size:14px;
+	font-size:17px;
 }
 
 header .formReservas input[type="submit"]{

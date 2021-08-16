@@ -43,9 +43,7 @@ $servidor = ControladorRuta::ctrServidor();
 	<!-- jdSlider -->
 	<link rel="stylesheet" href="css/plugins/jquery.jdSlider.css">
 
-	<!-- Pano -->
-	<link rel="stylesheet" href="css/plugins/jquery.pano.css">
-
+	
 	<!-- fullCalendar -->
 	<link rel="stylesheet" href="css/plugins/fullcalendar.min.css">
 

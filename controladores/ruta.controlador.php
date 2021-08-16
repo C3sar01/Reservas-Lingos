@@ -4,14 +4,14 @@ class ControladorRuta{
 
 	static public function ctrRuta(){
 
-		return "https://localhost/reservas-lingos/";
+		return "http://localhost/reservas-lingos/";
 
 	}
 
 	static public function ctrServidor(){
 
 
-		return "https://localhost/reservas-lingos/backend/";
+		return "http://localhost/reservas-lingos/backend/";
 	}
 
 }

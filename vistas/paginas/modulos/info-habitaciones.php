@@ -115,20 +115,7 @@ INFO SALA
 
 				</section>
 
-				<!-- 360 GRADOS -->
-
-				<section class="mb-3 my-lg-3 360Habitaciones d-none">
-
-					<div id="myPano" class="pano">
-
-						<div class="controls">
-							<a href="#" class="left">&laquo;</a>
-							<a href="#" class="right">&raquo;</a>
-						</div>
-
-					</div>
-
-				</section>
+				
 
 				<!--=====================================
 				DESCRIPCIÓN HABITACIONES
@@ -144,7 +131,7 @@ INFO SALA
 
 						<button type="button" class="btn btn-default" vista="video"><i class="fab fa-youtube"></i> Video</button>
 
-						<button type="button" class="btn btn-default" vista="360"><i class="fas fa-video"></i> 360°</button>
+						
 
 					</div>
 
