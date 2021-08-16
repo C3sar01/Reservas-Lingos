@@ -47,23 +47,31 @@ CONTÁCTENOS
 MAPA
 ======================================-->
 <div class="mapa container-fluid bg-white p-0">
-	
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2181015083097!2d-75.16167268476889!3d6.2349559954867315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e441d2a2f90b049%3A0xe73c0a7060062903!2sHOTEL+PORTOBELO+GUATAPE!5e0!3m2!1ses!2sco!4v1544281019677" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d406.42420291265483!2d-71.66606167171844!3d-35.42027803603942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9665c69e0b83ca8f%3A0x24916097c181d2a9!2sLingo&#39;s!5e0!3m2!1ses-419!2scl!4v1629083006319!5m2!1ses-419!2scl" 
+	width="100%" 
+	height="450" 
+	frameborder="0"
+	style="border:0;" 
+	allowfullscreen>
+
+</iframe>
+
 
 	<div class=" p-4 info"> 
 
-		<h3 class="mt-4"><strong>Visítanos</strong></h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
+		<h3 class="mt-4"><strong>Visítanos!</strong></h3>
+	
 		<p>
-		Apple inc.<br>
-		Infinte Loop.<br>
-		Cupertino, CA 95014<br>
-		408-996-1010
+		Lingo's Talca<br>
+		1 Poniente 1610, Talca<br>
+		
 		</p>
 
-		<p class="pb-4">Email: info@apple.com<br>
-		Tel: 1-800-676-2775</p>
+		<p class="pb-4">Email: contacto@lingos.cl<br>
+		fono +569 99976703</p>
 
 	</div>	
 
@@ -81,7 +89,7 @@ FOOTER
 
 		<div class="grid-item d-none d-lg-block pt-2">
 			
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat.</p>
+			<p>Siguenos en nuestras redes sociales!</p>
 
 		</div>
 
@@ -90,20 +98,12 @@ FOOTER
 			<ul class="py-1">
 
 				<li>
-					<a href="#" target="_blank"><i class="fab fa-facebook-f lead text-white float-left mx-3"></i></a>
+					<a href="https://www.facebook.com/lingostalca" target="_blank"><i class="fab fa-facebook-f lead text-white float-left mx-3"></i></a>
 				</li>
 
+				
 				<li>
-					<a href="#" target="_blank"><i class="fab fa-twitter lead text-white float-left mx-3"></i></a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank"><i class="fab fa-youtube lead text-white float-left mx-3"></i></a>
-				</li>
-
-
-				<li>
-					<a href="#" target="_blank"><i class="fab fa-instagram lead text-white float-left mx-3"></i></a>
+					<a href="https://www.instagram.com/lingos.talca/" target="_blank"><i class="fab fa-instagram lead text-white float-left mx-3"></i></a>
 				</li>	
 			
 			</ul>	

@@ -54,7 +54,7 @@ HEADER
 
 				</div>
 
-				<!--=====================================
+			<!--=====================================
 			FORMULARIO DE RESERVAS
 			======================================-->
 				<form action="<?php echo $ruta; ?>reservas" method="post">
@@ -174,16 +174,19 @@ HEADER
 
 			</div>
 
+			<div class="grid-item d-none d-lg-block mt-2 ">
+			
+					<a href="https://www.facebook.com/lingostalca" target="_blank">
+					<i class="fab fa-facebook-f lead d-none d-lg-block float-left"></i></a>
+			
+					<a href="https://www.instagram.com/lingos.talca/" target="_blank">
+					<i class="fab fa-instagram lead d-none d-lg-block float-left mx-4"></i></a>
+			
+			
+			
 
-			<!-- SELECCIÓN DE IDIOMA -->
+		</div>
 
-			<div class="grid-item d-none d-lg-block mt-1 idiomas">
-
-				<span class="border border-color float-left p-1 bg-info text-white idiomaEs">ES</span>
-
-				<span class="border border-color float-left p-1 bg-white text-white idiomaEn">EN</span>
-
-			</div>
 
 			<!-- MENÚ HAMBURGUESA -->
 
@@ -195,7 +198,11 @@ HEADER
 
 		</div>
 
+		
+
 	</div>
+
+	
 
 </header>
 
@@ -361,15 +368,15 @@ MENÚ MÓVIL
 		</li>
 
 		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#habitaciones">Habitaciones</a>
+			<a class="nav-link text-white my-2" href="#habitaciones">Salas</a>
 		</li>
 
 		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#pueblo">Recorrido por el pueblo</a>
+			<a class="nav-link text-white my-2" href="#pueblo">Lingos</a>
 		</li>
 
 		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#restaurante">Restaurante</a>
+			<a class="nav-link text-white my-2" href="#restaurante">Kaffe</a>
 		</li>
 
 		<li class="nav-item">
