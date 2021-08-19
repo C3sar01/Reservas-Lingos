@@ -297,7 +297,7 @@ function colDerReservas() {
     success: function (respuesta) {
       if (!respuesta) {
         $(".codigoReserva").html(codigoReserva);
-        $(".pagarReserva").attr("pagarReserva",codigoReserva);
+        $(".pagarReserva").attr("codigoReserva",codigoReserva);
 
       } else {
         $(".codigoReserva").html(codigoReserva + codigoAleatorio(chars, 3));
@@ -306,31 +306,101 @@ function colDerReservas() {
     },
   });
 
+  
   /*=============================================
-  SELECTS DE RESERVA X HORA O PLANES
+        CAMBIO DE PLAN
   =============================================*/
+        
+        
+  $(".elegirPlan").change(function(){
 
-  $(".limpiar").click(function () {
-    $(".horas").attr("empty", true);
-  });
-  
-  $(".comprarHora").click(function () {
-    $(".elegirPlan").attr("disabled", true);
-    $(".horas").attr("disabled", false);
-  });
+    if ($(this).val() == "plan16") {
 
-  $(".comprarPlan").click(function () {
-    $(".elegirPlan").attr("disabled", false);
-    $(".horas").attr("disabled", true);
-  });
+      $(".precioReserva span").html($(".elegirPlan").val().split(",")[0]);
+      $(".precioReserva span").number(true);
+         
+      $(".pagarReserva").attr("pagoReserva",$(".elegirPlan").val().split(",")[0])
+      $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
+      
+    }
 
-  $(".elegirPlan").change(function () {
-    $(".precioReserva span").html($(this).val().split(",")[0]);
-    $(".precioReserva span").number(true);
-  });
+    if ($(this).val() == "plan32") {
 
-  
+      $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+      $(".precioReserva span").number(true);
+       
+      $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+      $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
+        
+      
+    }
+
+    if ($(this).val() == "plan64") {
+
+      $(".precioReserva span").html(  Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+      $(".precioReserva span").number(true);
+       
+      $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+      $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
+
+      
+      
+    }
+
+          
+   
+        })
+
 }
+
+ /*=============================================
+  FUNCION CAMBIO EN SELECT PLANES
+  =============================================
+
+  function cambioPlanes(){
+
+    switch($(".elegirPlan").val()){
+              
+      case "plan16":
+  
+         $(".precioReserva span").html($(".elegirPlan").val().split(",")[0]);
+         $(".precioReserva span").number(true);
+         
+         $(".pagarReserva").attr("pagoReserva",$(".elegirPlan").val().split(",")[0])
+         $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
+         
+  
+      break;
+  
+      case "plan32":
+  
+       $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+       $(".precioReserva span").number(true);
+       
+       $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+       $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
+        
+  
+      break;
+  
+      case "plan64":
+  
+       $(".precioReserva span").html(  Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+       $(".precioReserva span").number(true);
+       
+       $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
+       $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
+        
+  
+      break;
+  
+  
+    }
+  
+  }
+  */
+
+
 
 /*=============================================
   GENERAR COOKIES
@@ -360,7 +430,7 @@ function crearCookie(nombre, valor, diasExpedicion){
     
     let imgSala =  $(this).attr("imgSala");
     
-    let infoSala =  $(this).attr("infoSala")+" - "+$(this).attr("horas")+" - "+$(this).attr("plan") + " - ";
+    let infoSala =  $(this).attr("infoSala")+" - "+$(this).attr("plan")+" - "+$(this).attr("horas") + " - ";
    
     let pagoReserva = $(this).attr("pagoReserva");
     

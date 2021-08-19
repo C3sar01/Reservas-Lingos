@@ -268,13 +268,13 @@ fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>
 			<button type="button" class="btn btn-dark float-right comprarPlan">Comprar un plan</button>
 			<br>
 			
-			<br><select class="form-control elegirPlan" disabled>
+			<br><select class="form-control elegirPlan">
 			
 
-					<option value="" selected disabled>Selecciona aquí tu plan</option>
-					<option id="16" value="<?php echo ($plan16) ?>,plan16">Plan 16 horas x Semana <?php echo number_format($plan16) ?></option>
-					<option id="32" value="<?php echo ($plan32) ?>,plan32">Plan 32 horas x Semana <?php echo number_format($plan32) ?></option>
-					<option id="64" value="<?php echo ($plan64) ?>,plan64">Plan 64 horas x Semana <?php echo number_format($plan64) ?></option>
+					<option value="" >Selecciona aquí tu plan</option>
+					<option id="16" value="<?php echo ($plan16) ?>,plan16">Plan 16 horas por mes <?php echo number_format($plan16) ?></option>
+					<option id="32" value="<?php echo ($plan32) ?>,plan32">Plan 32 horas por mes <?php echo number_format($plan32) ?></option>
+					<option id="64" value="<?php echo ($plan64) ?>,plan64">Plan 64 horas por mes <?php echo number_format($plan64) ?></option>
 
 				</select>
 
@@ -295,16 +295,20 @@ fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>
 
 						<?php if ($_SESSION["validarSesion"] == "ok") : ?>
 
-							<a href="<?php echo $ruta; ?>perfil" class="pagarReserva" idSala="<?php echo $reserva[$indice]["id_s"]; ?>" 
+							<a href="<?php echo $ruta; ?>perfil" 
+							class="pagarReserva" 
+							idSala="<?php echo $reserva[$indice]["id_s"]; ?>" 
 							imgSala="<?php echo $servidor . $galeria[0]; ?>" 
 							infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . 
 							$reserva[$indice]["estilo"]; ?>" 
 							
 							pagoReserva="<?php echo ($precioHora * $horas); ?>" 
 							pagoPlan="<?php echo number_format($precioHora * $horas); ?>" 
-							codigoReserva="" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" 
+							codigoReserva="" 
+							fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" 
 							fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" 
-							horas="Precio Hora" plan="Precio plan">
+							horas="Precio Hora" 
+							plan="plan16">
 
 
 
@@ -322,7 +326,8 @@ fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>
 						infoSala="Sala <?php echo $reserva[$indice]["tipo"] . " " . $reserva[$indice]["estilo"]; ?>" 
 						pagoReserva="<?php echo ($precioHora * $horas); ?>" 
 						pagoPlan="<?php echo number_format($precioHora * $horas); ?>" 
-						codigoReserva="" fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" 
+						codigoReserva="" 
+						fechaIngreso="<?php echo $_POST["fecha-ingreso"]; ?>" 
 						fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" 
 						horas="Precio Hora" plan="Precio plan">
 							
