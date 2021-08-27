@@ -1,3 +1,11 @@
+<?php
+session_start();
+$ruta = ControladorRuta::ctrRuta();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>Hotel Portobelo | Backend</title>
+	<title>Lingos Talca | Backend</title>
 
 	<link rel="icon" href="vistas/img/plantilla/icono.jpg">
 
@@ -108,6 +116,15 @@
 
  </head>
 
+ <?php if (!isset($_SESSION["validarSesionBackend"])): 
+
+   include "paginas/login.php";
+	
+?> 
+
+<?php else: ?>
+	
+
  <body class="hold-transition sidebar-mini sidebar-collapse">
 
     <div class="wrapper">
@@ -118,7 +135,40 @@
 	 
 	 include "paginas/modulos/menu.php";
 
-	 include "paginas/inicio.php";
+	 
+	 /*===================================
+	        Navegación de páginas
+	 ====================================*/
+
+	 if(isset($_GET["pagina"])){
+
+		if($_GET["pagina"] == "inicio" ||
+		   $_GET["pagina"] == "administradores" ||
+		   $_GET["pagina"] == "banner" ||
+		   $_GET["pagina"] == "planes" ||
+		   $_GET["pagina"] == "categorias" ||
+		   $_GET["pagina"] == "salas" ||
+		   $_GET["pagina"] == "reservas" ||
+		   $_GET["pagina"] == "usuarios" ||
+		   $_GET["pagina"] == "recorrido" ||
+		   $_GET["pagina"] == "restaurante"
+		   ){
+
+			include "paginas/".$_GET["pagina"].".php";
+
+		}else{
+			
+			include "paginas/error404.php";
+
+
+		}
+
+
+	}else{
+
+		include "paginas/inicio.php";
+
+	}
 
 	 include "paginas/modulos/footer.php";
 
@@ -136,5 +186,7 @@
 
 
  </body>
+
+ <?php endif ?>
 
 </html>

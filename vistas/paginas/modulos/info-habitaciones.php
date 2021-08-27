@@ -208,6 +208,7 @@ INFO SALA
 						<h5>
 							<i class="fas fa-temperature-low w-25 colorTitulos"></i>
 							<span class="text-dark small">Aire acondicionado</span>
+							
 						</h5>
 					</li>
 

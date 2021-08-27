@@ -1,5 +1,9 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom">
 
+    <!-- =======================================
+      Boton de colapse de menú
+     ===========================================!-->
+
     <ul class="navbar-nav">
 
         <li class="nav-item">
@@ -14,7 +18,9 @@
 
 
     </ul>
-
+     <!-- =======================================
+             Notificaciones
+    ===========================================!-->
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item dropdown">
@@ -25,6 +31,7 @@
                 <span class="badge badge-danger navbar-badge">5</span>
 
             </a>
+           
 
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
@@ -44,7 +51,22 @@
             </div>
 
         </li>
-        
+         <!-- =======================================
+               Boton de salir del sistema
+        ===========================================!-->
+
+        <li class="nav-item">
+
+            <a class="nav-link" href="salir">
+
+                <i class="fas fa-sign-out-alt"></i>
+
+
+            </a>
+
+
+        </li>
+
 
 
     </ul>
