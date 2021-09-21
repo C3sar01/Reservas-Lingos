@@ -50,7 +50,13 @@ CAFÉ
 
 			<div class="grid-item bloqueRestaurante">
 				
-				<h1 class="mt-4 my-lg-5">KAFFE</h1>
+			   <h9>
+			   <a href="<?php echo $ruta;  ?>">
+
+               <img src="img/logokaffe.png" class="img-fluid kaffe" >
+
+                </a>
+				</h9>
 
 				<p class="p-4 my-lg-5">DISFRUTA DE UN COFFE BREAK EN EL PRIMER PISO DEL LOCAL EN CAFÉ KAFFE, DONDE TE OFRECEMOS CAFÉ DE GRANO FRESCO Y LOS MEJORES PRODUCTOS PARA ACOMPAÑAR TU EXQUISITO CAFÉ Y TU TARDE DE TRABAJO</p>
 

@@ -334,7 +334,7 @@ CAFE
 
 .restaurante .grid-item{
 	text-align:center;
-	color:white;
+	color:rgb(10, 9, 9);
 }
 
 .restaurante .grid-item:nth-child(2){
@@ -342,7 +342,7 @@ CAFE
 	z-index:1;
 	top:-60px; 
 	height:600px;
-	background:#181717;
+	background: white;
 }
 
 
@@ -357,6 +357,12 @@ CAFE
 .contactenos{
 	position:relative;
 	margin-top:-80px;
+}
+
+.kaffe{
+  width: 250px; 
+  height: 200px;
+	  
 }
 
 /*=============================================

@@ -260,7 +260,7 @@ fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>
 
 			<div class="form-group valores">
              
-			<div class="card" style="padding:10px ; background: #E9EEE9">
+			<div img="" class="card" style="padding:10px ; background: #E9EEE9" >
 			<h4><a href="#infoPlanes" data-toggle="modal">Mira aquí los planes mensuales disponibles!</a></h4>
 			</div>
 			
@@ -271,7 +271,7 @@ fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>
 			<br><select class="form-control elegirPlan">
 			
 
-					<option value="" >Selecciona aquí tu plan</option>
+					<option value="" disabled>Selecciona aquí tu plan</option>
 					<option id="16" value="<?php echo ($plan16) ?>,plan16">Plan 16 horas por mes <?php echo number_format($plan16) ?></option>
 					<option id="32" value="<?php echo ($plan32) ?>,plan32">Plan 32 horas por mes <?php echo number_format($plan32) ?></option>
 					<option id="64" value="<?php echo ($plan64) ?>,plan64">Plan 64 horas por mes <?php echo number_format($plan64) ?></option>

@@ -308,98 +308,21 @@ function colDerReservas() {
 
   
   /*=============================================
-        CAMBIO DE PLAN
+        CAMBIO DE PLANES
   =============================================*/
         
         
   $(".elegirPlan").change(function(){
-
-    if ($(this).val() == "plan16") {
 
       $(".precioReserva span").html($(".elegirPlan").val().split(",")[0]);
       $(".precioReserva span").number(true);
          
       $(".pagarReserva").attr("pagoReserva",$(".elegirPlan").val().split(",")[0])
       $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
-      
-    }
 
-    if ($(this).val() == "plan32") {
-
-      $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-      $(".precioReserva span").number(true);
-       
-      $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-      $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
-        
-      
-    }
-
-    if ($(this).val() == "plan64") {
-
-      $(".precioReserva span").html(  Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-      $(".precioReserva span").number(true);
-       
-      $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-      $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
-
-      
-      
-    }
-
-          
-   
         })
 
 }
-
- /*=============================================
-  FUNCION CAMBIO EN SELECT PLANES
-  =============================================
-
-  function cambioPlanes(){
-
-    switch($(".elegirPlan").val()){
-              
-      case "plan16":
-  
-         $(".precioReserva span").html($(".elegirPlan").val().split(",")[0]);
-         $(".precioReserva span").number(true);
-         
-         $(".pagarReserva").attr("pagoReserva",$(".elegirPlan").val().split(",")[0])
-         $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
-         
-  
-      break;
-  
-      case "plan32":
-  
-       $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-       $(".precioReserva span").number(true);
-       
-       $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-       $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
-        
-  
-      break;
-  
-      case "plan64":
-  
-       $(".precioReserva span").html(  Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-       $(".precioReserva span").number(true);
-       
-       $(".pagarReserva").attr("pagoReserva",Number($(".elegirPlan").val().split(",")[0]) + Number($(".elegirPlan").val().split(",")[0]));
-       $(".pagarReserva").attr("plan",$(".elegirPlan").val().split(",")[1]);
-        
-  
-      break;
-  
-  
-    }
-  
-  }
-  */
-
 
 
 /*=============================================
