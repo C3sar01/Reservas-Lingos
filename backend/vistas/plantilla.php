@@ -1,7 +1,7 @@
 <?php
 session_start();
 $ruta = ControladorRuta::ctrRuta();
-
+$rutaBackend = ControladorRuta::ctrRutaBackend();
 
 ?>
 
@@ -151,7 +151,8 @@ $ruta = ControladorRuta::ctrRuta();
 		   $_GET["pagina"] == "reservas" ||
 		   $_GET["pagina"] == "usuarios" ||
 		   $_GET["pagina"] == "recorrido" ||
-		   $_GET["pagina"] == "restaurante"
+		   $_GET["pagina"] == "restaurante" ||
+		   $_GET["pagina"] == "salir"
 		   ){
 
 			include "paginas/".$_GET["pagina"].".php";
@@ -183,7 +184,7 @@ $ruta = ControladorRuta::ctrRuta();
 
 
 
-
+   <script src="vistas/js/administradores.js"></script>
 
  </body>
 

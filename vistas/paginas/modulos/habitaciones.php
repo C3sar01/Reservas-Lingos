@@ -15,7 +15,7 @@ SALAS
 
 		<h1 class="pt-4 text-center">SALAS</h1>
 
-		<div class="row p-4 text-center">
+		<div class="row p-4 text-center" style="margin-left: 100px;">
 
 			<?php foreach ($categorias as $key => $value): ?>
 				
@@ -23,7 +23,7 @@ SALAS
 
 				<a href="<?php echo $ruta.$value["ruta"];  ?>">
 					
-					<figure class="text-center">
+					<figure class="text-center" style="width: 320px;">
 						
 						<img src="<?php echo $servidor.$value["img"]; ?>" class="img-fluid" width="100%">
 

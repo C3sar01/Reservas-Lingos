@@ -90,19 +90,16 @@ header .fa-user {
 
 header .fa-facebook-f {
 	font-size:26px; 
-	color:#0b30aa;
+	color: black;
 	cursor:pointer;
 	
 }
 
 header .fa-instagram {
 	font-size:30px; 
-	color: #fff;
+	color: black;
 	cursor:pointer;
-	background: #d6249f;
-	background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-	box-shadow: 0px 3px 10px rgba(0,0,0,.25);
-	border-radius: 8px;
+	
 }
 
 

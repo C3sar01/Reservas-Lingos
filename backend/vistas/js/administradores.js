@@ -1,16 +1,15 @@
 /*=============================================
 Tabla Administradores
 =============================================*/
-// $.ajax({
+$.ajax({
 
-// 	"url":"ajax/tablaAdministradores.ajax.php",
-// 	success: function(respuesta){
-		
-// 		console.log("respuesta", respuesta);
+	"url":"ajax/tablaAdministradores.ajax.php",
+	success: function(respuesta){
 
-// 	}
+		console.log("respuesta", respuesta);
+	}
 
-// })
+})
 
 $(".tablaAdministradores").DataTable({
 	"ajax":"ajax/tablaAdministradores.ajax.php",

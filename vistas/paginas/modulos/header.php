@@ -176,14 +176,11 @@ HEADER
 
 			<div class="grid-item d-none d-lg-block mt-2 ">
 			
-					<a href="https://www.facebook.com/lingostalca" target="_blank">
-					<i class="fab fa-facebook-f lead d-none d-lg-block float-left"></i></a>
+			 <a class="button fab fa-facebook-f lead d-none d-lg-block float-left "href="https://www.facebook.com/lingostalca" 
+			     target="_blank"></a>
 			
-					<a href="https://www.instagram.com/lingos.talca/" target="_blank">
-					<i class="fab fa-instagram lead d-none d-lg-block float-left mx-4"></i></a>
-			
-			
-			
+			 <a class="button fab fa-instagram lead d-none d-lg-block float-left mx-4" href="https://www.instagram.com/lingos.talca/" 
+			  target="_blank"></a>
 
 		</div>
 

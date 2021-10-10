@@ -9,4 +9,9 @@ class ControladorRuta{
 
     }
 
+    static public function ctrRutaBackend(){
+
+        return "http://localhost/reservas-lingos/backend/";
+    }
+
 }

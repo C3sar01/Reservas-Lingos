@@ -23,7 +23,7 @@ BANNER
 			
 				
 				 <li>					
-                    <img src="<?php echo $servidor.$value["img"]; ?>"width="100%">
+                    <img src="<?php echo $servidor.$value["img"]; ?>"width="100%"  style="height:750px;">
                 </li>
 
                 
