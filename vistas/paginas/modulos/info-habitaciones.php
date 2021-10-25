@@ -107,13 +107,6 @@ INFO SALA
 
 				</section>
 
-				<!-- VIDEO  -->
-
-				<section class="mb-3 my-lg-3 videoHabitaciones d-none">
-
-					<iframe width="100%" height="380" src="https://www.youtube.com/embed/JTu790_yyRc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-				</section>
 
 				
 
@@ -128,10 +121,6 @@ INFO SALA
 					<div class="float-right pt-2">
 
 						<button type="button" class="btn btn-default" vista="fotos"><i class="fas fa-camera"></i> Fotos</button>
-
-						<button type="button" class="btn btn-default" vista="video"><i class="fab fa-youtube"></i> Video</button>
-
-						
 
 					</div>
 

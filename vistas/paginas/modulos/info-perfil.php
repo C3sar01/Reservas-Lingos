@@ -618,8 +618,8 @@ INFO PERFIL
 									echo '<p class="help-block small">
 
 							Si necesita modificar o cancelar una reserva, favor escribirnos al WhatsApp 
-							<a href="https://api.whatsapp.com/send?phone=573001112233&text=
-							Hola Lingos Talca, necesito hacer un cambio en una reserva" target="_blank">+57 300 111 22 33</a>
+							<a href="https://api.whatsapp.com/send?phone=562 2 7171203&text=
+							Hola Lingos Talca, necesito hacer un cambio en una reserva" target="_blank">+562 2 7171203</a>
 
 					     </p>';
 								}

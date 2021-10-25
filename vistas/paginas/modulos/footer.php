@@ -124,13 +124,6 @@ REDES SOCIALES MÓVIL
 		<a href="#" target="_blank"><i class="fab fa-facebook-f lead text-white"></i></a>
 	</li>
 
-	<li class="nav-item">
-		<a href="#" target="_blank"><i class="fab fa-twitter lead text-white"></i></a>
-	</li>
-
-	<li class="nav-item">
-		<a href="#" target="_blank"><i class="fab fa-youtube lead text-white"></i></a>
-	</li>
 
 	<li class="nav-item">
 		<a href="#" target="_blank"><i class="fab fa-instagram lead text-white"></i></a>

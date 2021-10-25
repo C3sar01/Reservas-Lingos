@@ -231,37 +231,7 @@ MENÚ
 			<a class="nav-link text-white" href="#contactenos">Contáctenos</a>
 		</li>
 
-		<li class="nav-item">
-
-			<ul class="my-2 py-1">
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-facebook-f text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-twitter text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-youtube text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-instagram text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-			</ul>
-
-		</li>
+		
 
 	</ul>
 

@@ -2,11 +2,7 @@
 
 $inferior = ControladorInferior::ctrMostrarInferior();
 
-
 ?>
-
-
-
 
 <!--=====================================
 RECORRIDO POR EL PUEBLO
@@ -32,7 +28,7 @@ RECORRIDO POR EL PUEBLO
 				
 								<div class="grid-item">
 									
-									<img src="<?php echo $servidor.$value["foto_peq"]; ?>" class="img-fluid" width="100%">
+									
 
 								</div>
 
@@ -40,7 +36,7 @@ RECORRIDO POR EL PUEBLO
 									
 									<h1 class="mt-4 mb-0 my-lg-2"><?php echo $value["titulo"]; ?></h1>
 
-									<p class="small p-3 text-uppercase"> <?php echo $value["descripcion"]; ?>  </p>
+									<p class="p-3 text-uppercase"> <?php echo $value["descripcion"]; ?>  </p>
 
 								</div>
 

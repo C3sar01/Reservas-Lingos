@@ -282,6 +282,10 @@ SALAS
 	color:#777;
 }
 
+.menuPlanes {
+	border-radius: 10px;
+}
+
 /*=============================================
 CAFE
 =============================================*/
@@ -314,12 +318,12 @@ CAFE
 
 .fondoRestaurante{
 	position:fixed;
-	z-index:-1;
+	z-index: -1;
 	top:0;
 	left:0;
 	height:1000px;
 	background-color:white;
-	background-image: url("../img/restaurante.png");
+	background-image: url("../img/restaurante.jpg");
 	background-position: center top;
 	background-repeat: repeat-y;
 }
@@ -331,7 +335,12 @@ CAFE
 
 .restaurante .grid-item{
 	text-align:center;
-	color:rgb(10, 9, 9);
+	color:white;
+}
+
+.descripcionKaffe{
+	text-align:center;
+	color:black;
 }
 
 .restaurante .grid-item:nth-child(2){

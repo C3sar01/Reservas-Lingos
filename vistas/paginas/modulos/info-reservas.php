@@ -45,7 +45,7 @@ if (isset($_POST["id-sala"])) {
 		$precioHora = $reserva[$indice]["hora_alta"];
 	} else {
 
-		$precioHora = $reserva[$indice]["hora_baja"];
+		$precioHora = $reserva[$indice]["hora_alta"];
 	}
 
 	/*=============================================
@@ -260,8 +260,16 @@ fechaSalida="<?php echo $_POST["fecha-salida"]; ?>" horas="<?php echo $horas; ?>
 
 			<div class="form-group valores">
              
-			<div img="" class="card" style="padding:10px ; background: #E9EEE9" >
-			<h4><a href="#infoPlanes" data-toggle="modal">Mira aquí los planes mensuales disponibles!</a></h4>
+			<div img="" style="padding:10px" >
+				
+			    <h4>
+					
+				    <a href="#infoPlanes" data-toggle="modal">
+					<img src="img/planes.png" class="img-fluid menuPlanes" alt="Planes">
+				    </a>
+			    
+				</h4>
+			
 			</div>
 			
 			<br>
