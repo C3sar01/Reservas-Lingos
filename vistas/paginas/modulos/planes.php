@@ -18,10 +18,9 @@ PLANES
 			
 			<div class="grid-item">
 				
-				<h1 class="text-center py-3 py-lg-5 tituloPlan text-uppercase" tituloPlan="BIENVENIDO A LINGO'S!">BIENVENIDO A LINGO'S!</h1>
+				<h1 class="text-center py-3 py-lg-5 tituloPlan text-uppercase" tituloPlan="Revisa nuestros planes!">BIENVENIDO A LINGO'S!</h1>
 
-				<h5 class="text-muted text-left px-4 descripcionPlan" descripcionPlan=" Lingo's es un espacio de trabajo y aprendizaje que permite tanto a profesionales independientes como a empresas virtuales, contar con un espacio físico para el desarrollo de diversas actividades.
-Ofrecemos espacios equipados -data, escritorios, mesas, pizarras- para talleres, salas de reunión u oficinas según los requerimientos de nuestros clientes. Además ofrecemos el servicio de coffe break que entrega Kaffe Café ubicado en el primer nivel.
+				<h5 class="text-muted text-left px-4 descripcionPlan" descripcionPlan
 
  
 ¿Quieres saber más sobre nuestros servicios? Contactanos! "></h5>

@@ -68,18 +68,7 @@ VENTANA MODAL INGRESO
 
 			</div>
 
-			<div class="px-2 flex-fill">
-
-			<a href="<?php echo $rutaGoogle; ?>">
-
-				<p class="p-2 bg-danger text-center text-white" style="cursor:pointer">
-					<i class="fab fa-google"></i>
-					Ingreso con Google
-				</p>
-
-			</a>
-
-			</div>
+			
 
       	</div>
 
